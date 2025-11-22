@@ -1,0 +1,2 @@
+require("smol")
+require("lazynvim")

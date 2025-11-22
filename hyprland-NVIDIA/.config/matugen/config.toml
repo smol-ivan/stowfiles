@@ -1,0 +1,28 @@
+[config.wallpaper]
+
+set = false
+
+command = "swww"
+
+arguments = ["img", "--transition-type", "center", "--outputs", "DP-1,HDMI-A-1"]
+
+[templates.hyprland]
+input_path = '~/.config/matugen/templates/hyprland-colors.conf'
+output_path = '~/.config/hypr/colors.conf'
+
+[templates.ghostty]
+input_path = '~/.config/matugen/templates/ghostty.txt'
+output_path = '~/.config/ghostty/colors.txt'
+
+[templates.rofi]
+input_path = '~/.config/matugen/templates/rofi-colors.rasi'
+output_path = '~/.config/rofi/colors.rasi'
+
+[templates.tmux]
+input_path = '~/.config/matugen/templates/tmux-colors.conf'
+output_path = '~/.config/tmux/colors.conf'
+
+[templates.waybar]
+input_path = '~/.config/matugen/templates/colors.css'
+output_path = '~/.config/waybar/colors.css'
+post_hook = 'killall -9 waybar; waybar &'

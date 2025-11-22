@@ -1,0 +1,64 @@
+@import "colors.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "CaskaydiaCove Nerd Font","Iosevka Nerd Font", Helvetica, Arial, sans-serif;
+    font-size: 1.4rem;
+    min-height: 0;
+}
+
+window#waybar {
+    background: @transparent;
+    color: @on_surface;
+}
+
+tooltip {
+  background: @background;
+  border: 1px solid rgba(100, 114, 125, 0.5);
+}
+tooltip label {
+  color: @on_surface;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    background: transparent;
+    color: white;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button:hover {
+    background-color: @inverse_on_surface;
+    border-bottom: 3px solid white;
+}
+
+#workspaces button.active {
+    background: @tertiary_container;
+    color: white;
+    border-bottom: 3px solid @secondary;
+}
+
+#clock {
+    background-color: #64727D;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
+
+#clock,
+#cpu,
+#memory,
+#disk,
+#pulseaudio,
+#battery,
+#network {
+    padding: 0px 16px;
+    margin: 5px 5px;
+    border-radius: 10px;
+    background-color: @primary_container;
+}
