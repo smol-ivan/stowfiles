@@ -1,0 +1,67 @@
+@import "colors.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "CaskaydiaCove Nerd Font", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.2rem;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+    background: transparent;
+    color: @on_surface;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+/* tooltip {
+    background: rgba(8, 7, 10, 0.8);
+    border-radius: 18px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #11111b;
+} */
+
+
+#workspaces button {
+    padding: 0px 12px;
+    margin: 5px 5px;
+    border-radius: 16px;
+    background-color: @surface_dim;
+    color: @surface_tint;
+    transition: all 0.3s ease-in-out;
+}
+
+
+#workspaces button.active {
+    color: @surface_container;
+    background-color: @surface_tint;
+    min-width: 46px;
+    background-size: 400% 400%;
+    transition: all 0.3s ease-in-out;
+    /*opacity: 1.0;*/
+}
+
+#workspaces button:hover {
+    color: @tertiary_fixed;
+    background-color: @secondary_container;
+    min-width: 40px;
+    background-size: 400% 400%;
+}
+
+#workspaces button.empty {
+    opacity: 0.4;
+}
+
+#clock,
+#network,
+#pulseaudio,
+#workspaces {
+    background-color: @primary_container;
+    margin: 5px 8px 0px 8px;
+    padding: 2px 15px;
+    border-radius: 18px;
+}
+
