@@ -72,7 +72,7 @@
 
 
 (add-to-list 'default-frame-alist
-	     '(font . "Iosevka Nerd Font Mono-18:"))
+	     '(font . "Iosevka Nerd Font Mono-15:"))
 
 (use-package smex)
 (global-set-key (kbd "M-x") 'smex)
