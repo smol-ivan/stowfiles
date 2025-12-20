@@ -1,4 +1,3 @@
-;;; Code:
 (setq user-full-name "Ivan Gordillo")
 (setq user-mail-address "gordillosolis@icloud.com")
 
@@ -99,9 +98,8 @@
 
 (use-package smartparens
   :ensure smartparens  ;; install the package
-  :hook (prog-mode text-mode markdown-mode rust-mode simpc-mode python-mode) ;; add `smartparens-mode` to these hooks
+  :hook (prog-mode text-mode markdown-mode rust-mode simpc-mode python-mode) 
   :config
-  ;; load default config
   (require 'smartparens-config))
 
 (use-package magit
@@ -112,65 +110,19 @@
 
 (use-package json-mode)
 
+(use-package go-mode
+  :mode ("\\.go\\'" . go-mode)
+  :config
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (setq-local tab-width 4)
+              (setq-local indent-tabs-mode nil))))
+
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+
 (ido-mode 1)
 (ido-everywhere 1)
-
-; (use-package lsp-mode
-;   :config
-;   (setq lsp-enable-snippet nil)
-;   (setq lsp-enable-file-watchers nil)
-;   ; (setq lsp-file-watch-threshold 60000)
-;   (setq lsp-response-timeout 120)
-;   :custom
-;   (lsp-log-max t)
-;   :hook
-;   (ruby-mode-hook . lsp)
-;   (lua-mode-hook  . lsp)
-;   (go-mode-hook   . lsp)
-;   (js-mode-hook   . lsp)
-;   (simpc-mode-hook . lsp)
-;   (rust-mode-hook . lsp)
-;   (json-mode-hook . (lambda () (setq lsp-enabled-clients '(json-ls)) (lsp)))
-;   :commands (lsp lsp-deferred))
-;
-; (use-package lsp-ui
-;   :commands
-;   lsp-ui-doc-mode
-;   lsp-ui-doc--hide-frame
-;   :custom
-;   (lsp-ui-sideline-enable nil)
-;   (lsp-ui-doc-enable nil)
-;   (lsp-doc-header t)
-;   (lsp-ui-doc-position 'at-point)
-;   (lsp-ui-doc-max-width 120)
-;   (lsp-ui-doc-max-height 30)
-;   (lsp-ui-doc-use-childframe nil)
-;   (lsp-ui-doc-use-webkit nil)
-;   (lsp-ui-flycheck-enable nil)
-;   (lsp-ui-imenu-enable t)
-;   (lsp-ui-imenu-kind-position 'top)
-;   (lsp-ui-peek-enable t)
-;   (lsp-ui-peek-peek-height 20)
-;   (lsp-ui-peek-list-width 50)
-;   (lsp-ui-peek-fontify 'on-demand)
-;   :preface
-;   (defun my-toggle-lsp-ui-doc ()
-;     (interactive)
-;     (if lsp-ui-doc-mode
-;         (progn
-;           (lsp-ui-doc-mode -1)
-;           (lsp-ui-doc--hide-frame))
-;       (lsp-ui-doc-mode 1)))
-;   :bind
-;   (:map lsp-mode-map
-;     ("C-c C-r" . lsp-ui-peek-find-references)
-;     ("C-c C-j" . lsp-ui-peek-find-definitions)
-;     ("C-c i"   . lsp-ui-peek-find-implementation)
-;     ("C-c m"   . lsp-ui-imenu)
-;     ("C-c s"   . lsp-ui-sideline-mode)
-;     ("C-c d"   . my-toggle-lsp-ui-doc))
-;   :hook
-;   (lsp-mode-hook . lsp-ui-mode))
 
 (use-package python
   :init
