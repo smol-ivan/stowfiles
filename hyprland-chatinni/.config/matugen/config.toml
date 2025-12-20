@@ -4,7 +4,7 @@ set = false
 
 command = "swww"
 
-arguments = ["img", "--transition-type", "random", "--outputs", "DP-1"]
+arguments = ["img", "--transition-type", "any", "--outputs", "DP-1,HDMI-A-1", "--transition-fps", "100"]
 
 [templates.hyprland]
 input_path = '~/.config/matugen/templates/hyprland-colors.conf'

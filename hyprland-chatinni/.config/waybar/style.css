@@ -3,7 +3,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "CaskaydiaCove Nerd Font", Roboto, Helvetica, Arial, sans-serif;
+    font-family: "CaskaydiaCove Nerd Font Propo", Roboto, Helvetica, Arial, sans-serif;
     font-size: 1.2rem;
     min-height: 0;
 }
@@ -60,7 +60,7 @@ window#waybar {
 #pulseaudio,
 #workspaces {
     background-color: @primary_container;
-    margin: 5px 8px 0px 8px;
+    margin: 5px 8px;
     padding: 2px 15px;
     border-radius: 18px;
 }
