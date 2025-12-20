@@ -1,5 +1,5 @@
 font-family = CaskaydiaCove Nerd Font
-font-size = 13
+font-size = 19
 shell-integration = zsh
 shell-integration-features = no-cursor
 cursor-style = block
@@ -10,3 +10,4 @@ cursor-click-to-move
 cursor-text = #000000
 background-opacity=1
 window-decoration=server
+confirm-close-surface = false
