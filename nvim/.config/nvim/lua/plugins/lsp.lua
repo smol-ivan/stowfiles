@@ -1,5 +1,5 @@
 return {
-{
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ "mason-org/mason.nvim", opts = {} },
@@ -37,10 +37,6 @@ return {
 
 					map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
 
-					---@param client vim.lsp.Client
-					---@param method vim.lsp.protocol.Method
-					---@param bufnr? integer some lsp support methods only in specific files
-					---@return boolean
 					local function client_supports_method(client, method, bufnr)
 						if vim.fn.has("nvim-0.11") == 1 then
 							return client:supports_method(method, bufnr)
@@ -122,9 +118,9 @@ return {
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			local servers = {
 				-- clangd = {},
-				-- gopls = {},
+				gopls = {},
 				-- pyright = {},
-				-- rust_analyzer = {},
+				rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
 				-- Some languages (like typescript) have entire language plugins that can be useful:
@@ -168,5 +164,5 @@ return {
 				},
 			})
 		end,
-	}
+	},
 }

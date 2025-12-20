@@ -28,5 +28,10 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 		},
+		formatters = {
+			stylua = {
+				prepend_args = { "--indent-type", "Spaces", "--indent-width", "4" },
+			},
+		},
 	},
 }

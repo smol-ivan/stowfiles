@@ -12,7 +12,7 @@ vim.o.mouse = "a"
 vim.o.showmode = false
 
 vim.schedule(function()
-	vim.o.clipboard = "unnamedplus"
+    vim.o.clipboard = "unnamedplus"
 end)
 
 -- Enable break indent
@@ -69,26 +69,26 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 -- [[ Basic Autocommands ]]
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.hl.on_yank()
-	end,
+    desc = "Highlight when yanking (copying) text",
+    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+    callback = function()
+        vim.hl.on_yank()
+    end,
 })
 
 local function open_win_config_func()
-	local scr_w = vim.opt.columns:get()
-	local scr_h = vim.opt.lines:get()
-	local tree_w = 80
-	local tree_h = math.floor(tree_w * scr_h / scr_w)
-	return {
-		border = "double",
-		relative = "editor",
-		width = tree_w,
-		height = tree_h,
-		col = (scr_w - tree_w) / 2,
-		row = (scr_h - tree_h) / 2,
-	}
+    local scr_w = vim.opt.columns:get()
+    local scr_h = vim.opt.lines:get()
+    local tree_w = 80
+    local tree_h = math.floor(tree_w * scr_h / scr_w)
+    return {
+        border = "double",
+        relative = "editor",
+        width = tree_w,
+        height = tree_h,
+        col = (scr_w - tree_w) / 2,
+        row = (scr_h - tree_h) / 2,
+    }
 end
 
 local map = vim.api.nvim_set_keymap
