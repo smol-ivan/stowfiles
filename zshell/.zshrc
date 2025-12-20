@@ -29,7 +29,7 @@ autoload -U compinit && compinit
 
 bindkey -e
 bindkey '^p' history-search-backward
-bindkey '^n' history-seach-forward
+bindkey '^n' history-search-forward
 
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
@@ -48,3 +48,12 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 
 alias ls='ls --color'
+
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+. "$HOME/.cargo/env"
+
+export PATH=$PATH:/usr/local/go/bin
+
+
+
