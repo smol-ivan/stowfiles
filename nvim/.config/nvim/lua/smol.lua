@@ -49,6 +49,8 @@ vim.o.scrolloff = 10
 
 vim.o.confirm = true
 
+vim.o.termguicolors = true
+
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.api.nvim_set_keymap("i", "jk", "<Esc>", { noremap = true, silent = true })
 
@@ -149,4 +151,6 @@ map("n", "<Space>bw", "<Cmd>BufferOrderByWindowNumber<CR>", opts)
 -- :BarbarEnable - enables barbar (enabled by default)
 -- :BarbarDisable - very bad command, should never be used
 --
-vim.keymap.set("n", "e", ":NvimTreeToggle<CR>", { noremap = true })
+vim.keymap.set("n", "e", ":NvimTreeToggle<CR>", { noremap = true }, { desc = "Toggle nerdtree" })
+
+vim.keymap.set("n", "h", ":Themery<CR>", { desc = "Theme switcher" })

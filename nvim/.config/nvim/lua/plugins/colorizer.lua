@@ -4,6 +4,7 @@ return {
         require("colorizer").setup({
             "*",
             css = { rgb_fn = true },
+            conf = { rgb_fn = true },
         })
     end,
 }
