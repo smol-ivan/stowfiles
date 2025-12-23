@@ -11,9 +11,9 @@ vim.o.mouse = "a"
 
 vim.o.showmode = false
 
-vim.schedule(function()
-    vim.o.clipboard = "unnamedplus"
-end)
+-- vim.schedule(function()
+--     vim.o.clipboard = "unnamedplus"
+-- end)
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -151,6 +151,25 @@ map("n", "<Space>bw", "<Cmd>BufferOrderByWindowNumber<CR>", opts)
 -- :BarbarEnable - enables barbar (enabled by default)
 -- :BarbarDisable - very bad command, should never be used
 --
-vim.keymap.set("n", "e", ":NvimTreeToggle<CR>", { noremap = true }, { desc = "Toggle nerdtree" })
+vim.keymap.set("n", "<Leader>e", ":NvimTreeToggle<CR>", { noremap = true }, { desc = "Toggle nerdtree" })
 
-vim.keymap.set("n", "h", ":Themery<CR>", { desc = "Theme switcher" })
+vim.keymap.set("n", "<Leader>st", ":Themery<CR>", { desc = "Theme switcher" })
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv")
+
+vim.keymap.set("n", "<leader>y", '"+y')
+vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>Y", '"+Y')
+
+local function toggle_diagnostics()
+    if vim.diagnostic.is_enabled() then
+        vim.diagnostic.disable()
+        print("Inline VText gone")
+    else
+        vim.diagnostic.enable()
+        print("Inline VText arrives")
+    end
+end
+
+vim.keymap.set("n", "<leader>d", toggle_diagnostics, { desc = "Toggle Virtual Text" })
