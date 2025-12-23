@@ -1,4 +1,7 @@
-font-family = CaskaydiaCove Nerd Font
+# font-family = CaskaydiaCove Nerd Font
+font-family = Maple Mono NF
+# font-family = Iosevka Nerd Font
+# font-family = FiraCode Nerd Font
 font-size = 19
 shell-integration = zsh
 shell-integration-features = no-cursor
