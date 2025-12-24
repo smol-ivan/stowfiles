@@ -9,7 +9,6 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = "a"
 
-
 vim.o.showmode = false
 
 -- vim.schedule(function()
@@ -161,7 +160,9 @@ vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv")
 
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>Y", '"+Y')
+-- vim.keymap.set("n", "<leader>Y", '"+Y')
+vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
+vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
 
 local function toggle_diagnostics()
     if vim.diagnostic.is_enabled() then
@@ -174,3 +175,10 @@ local function toggle_diagnostics()
 end
 
 vim.keymap.set("n", "<leader>d", toggle_diagnostics, { desc = "Toggle Virtual Text" })
+
+-- Set handlers globally
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+--
+-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+
+vim.o.winborder = "rounded"

@@ -168,6 +168,13 @@ return {
                 function(server_name)
                     local server = servers[server_name] or {}
                     server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+                    server.handlers = vim.tbl_deep_extend("force", {
+                        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+                        ["textDocument/signatureHelp"] = vim.lsp.with(
+                            vim.lsp.handlers.signature_help,
+                            { border = "rounded" }
+                        ),
+                    }, server.handlers or {})
                     require("lspconfig")[server_name].setup(server)
                 end,
             },
