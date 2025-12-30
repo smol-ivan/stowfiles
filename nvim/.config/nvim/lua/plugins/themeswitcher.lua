@@ -16,6 +16,12 @@ return {
                 "evergarden-winter",
                 "evergarden-fall",
                 "evergarden-spring",
+                "tokyonight-night",
+                "tokyonight-moon",
+                "tokyonight-storm",
+                "moonfly",
+                "bamboo",
+                "catppuccin-mocha",
             },
             livePreview = true,
         })
