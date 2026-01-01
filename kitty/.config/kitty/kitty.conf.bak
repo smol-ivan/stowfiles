@@ -34,9 +34,3 @@ sync_to_monitor no
 
 # Cambiar el atajo para los hints de URL (Ctrl+Shift+U)
 # map ctrl+shift+p hint url
-
-
-# BEGIN_KITTY_THEME
-# Dark Pastel
-include current-theme.conf
-# END_KITTY_THEME
