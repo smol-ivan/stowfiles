@@ -19,23 +19,23 @@ return {
                     vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                 end
 
-                map("<leader>grn", vim.lsp.buf.rename, "[R]e[n]ame")
+                map("<leader>gn", vim.lsp.buf.rename, "[R]e[n]ame")
 
-                map("<leader>gra", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
+                map("<leader>ga", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
 
-                map("<leader>grr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+                map("<leader>gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
-                map("<leader>gri", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+                map("<leader>gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 
-                map("<leader>grd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+                map("<leader>gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
-                map("<leader>grD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+                map("<leader>gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-                map("<leader>gO", require("telescope.builtin").lsp_document_symbols, "Open Document Symbols")
+                map("<leader>gs", require("telescope.builtin").lsp_document_symbols, "Open Document Symbols")
 
-                map("<leader>gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Open Workspace Symbols")
+                map("<leader>gS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Open Workspace Symbols")
 
-                map("<leader>grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
+                map("<leader>gt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
 
                 local function client_supports_method(client, method, bufnr)
                     if vim.fn.has("nvim-0.11") == 1 then
@@ -118,14 +118,37 @@ return {
         local servers = {
             -- clangd = {},
             gopls = {},
-            -- pyright = {},
-            rust_analyzer = {},
-            basedpyright = {
+            pyright = {
+                disableOrganizeImports = true,
                 settings = {
-                    basedpyright = {
-                        disableOrganizeImports = true,
+                    python = {
                         analysis = {
-                            typeCheckingMode = "standard",
+                            ignore = { "*" },
+                        },
+                    },
+                },
+            },
+
+            rust_analyzer = {},
+            -- basedpyright = {
+            --     settings = {
+            --         basedpyright = {
+            --             disableOrganizeImports = true,
+            --             analysis = {
+            --                 typeCheckingMode = "off",
+            --                 diagnosticMode = "openFilesOnly",
+            --                 useLibraryCodeForTypes = true,
+            --                 autoSearchPaths = true,
+            --                 ignore = { "*" },
+            --             },
+            --         },
+            --     },
+            -- },
+            ruff = {
+                init_options = {
+                    settings = {
+                        lint = {
+                            enable = false,
                         },
                     },
                 },

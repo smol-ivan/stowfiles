@@ -97,8 +97,8 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 -- Move to previous/next
-map("n", "<leader>wn", "<Cmd>BufferPrevious<CR>", opts)
-map("n", "<leader>wp", "<Cmd>BufferNext<<CR>", opts)
+map("n", "<leader>p", "<Cmd>BufferPrevious<CR>", opts)
+map("n", "<leader>n", "<Cmd>BufferNext<CR>", opts)
 
 -- Goto buffer in position...
 map("n", "<leader>w1", "<Cmd>BufferGoto 1<CR>", opts)
@@ -113,7 +113,7 @@ map("n", "<leader>w9", "<Cmd>BufferGoto 9<CR>", opts)
 map("n", "<leader>w0", "<Cmd>BufferLast<CR>", opts)
 
 -- Pin/unpin buffer
-map("n", "<leader>wp", "<Cmd>BufferPin<CR>", opts)
+map("n", "<leader>w,", "<Cmd>BufferPin<CR>", opts)
 
 -- Goto pinned/unpinned buffer
 --                 :BufferGotoPinned
@@ -152,7 +152,7 @@ vim.keymap.set("n", "<Leader>e", ":NvimTreeToggle<CR>", { noremap = true }, { de
 vim.keymap.set("n", "<Leader>st", ":Themery<CR>", { desc = "Theme switcher" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
