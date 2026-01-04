@@ -35,6 +35,10 @@ bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
+# Exclude / from word characters
+export WORDCHARS=${WORDCHARS:s?/?}
+
+
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
