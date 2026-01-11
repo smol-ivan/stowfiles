@@ -8,8 +8,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 autoload -U compinit && compinit
 
-bindkey -v
-export KEYTIMEOUT=1
  
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
