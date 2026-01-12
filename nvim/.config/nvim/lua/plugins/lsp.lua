@@ -1,5 +1,4 @@
 return {
-
     "neovim/nvim-lspconfig",
     dependencies = {
         { "mason-org/mason.nvim", opts = {} },
@@ -12,30 +11,33 @@ return {
     },
     config = function()
         vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+            group = vim.api.nvim_create_augroup("chattini", { clear = true }),
             callback = function(event)
-                local map = function(keys, func, desc, mode)
+                local map_lsp = function(keys, func, desc, mode)
                     mode = mode or "n"
                     vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                 end
+                map_lsp("<leader>gn", vim.lsp.buf.rename, "[R]e[n]ame")
 
-                map("<leader>gn", vim.lsp.buf.rename, "[R]e[n]ame")
+                map_lsp("<leader>ga", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
 
-                map("<leader>ga", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
+                map_lsp("<leader>gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
-                map("<leader>gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+                map_lsp("<leader>gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 
-                map("<leader>gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+                map_lsp("<leader>gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
-                map("<leader>gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+                map_lsp("<leader>gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-                map("<leader>gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+                map_lsp("<leader>gs", require("telescope.builtin").lsp_document_symbols, "Open Document Symbols")
 
-                map("<leader>gs", require("telescope.builtin").lsp_document_symbols, "Open Document Symbols")
+                map_lsp(
+                    "<leader>gS",
+                    require("telescope.builtin").lsp_dynamic_workspace_symbols,
+                    "Open Workspace Symbols"
+                )
 
-                map("<leader>gS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Open Workspace Symbols")
-
-                map("<leader>gt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
+                map_lsp("<leader>gt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
 
                 local function client_supports_method(client, method, bufnr)
                     if vim.fn.has("nvim-0.11") == 1 then
@@ -54,7 +56,7 @@ return {
                         event.buf
                     )
                 then
-                    local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+                    local highlight_augroup = vim.api.nvim_create_augroup("chattini-highlight", { clear = false })
                     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
                         buffer = event.buf,
                         group = highlight_augroup,
@@ -68,10 +70,10 @@ return {
                     })
 
                     vim.api.nvim_create_autocmd("LspDetach", {
-                        group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+                        group = vim.api.nvim_create_augroup("chattini-detach", { clear = true }),
                         callback = function(event2)
                             vim.lsp.buf.clear_references()
-                            vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+                            vim.api.nvim_clear_autocmds({ group = "chattini-highlight", buffer = event2.buf })
                         end,
                     })
                 end
@@ -80,16 +82,15 @@ return {
                     client
                     and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
                 then
-                    map("<leader>th", function()
+                    map_lsp("<leader>th", function()
                         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
                     end, "[T]oggle Inlay [H]ints")
                 end
             end,
         })
-
         vim.diagnostic.config({
             severity_sort = true,
-            float = { border = "rounded", source = "if_many" },
+            float = { source = "if_many" },
             underline = { severity = vim.diagnostic.severity.ERROR },
             signs = vim.g.have_nerd_font and {
                 text = {
@@ -116,34 +117,34 @@ return {
 
         local capabilities = require("blink.cmp").get_lsp_capabilities()
         local servers = {
-            -- clangd = {},
+            clangd = {},
             gopls = {},
-            pyright = {
-                disableOrganizeImports = true,
-                settings = {
-                    python = {
-                        analysis = {
-                            ignore = { "*" },
-                        },
-                    },
-                },
-            },
-
-            rust_analyzer = {},
-            -- basedpyright = {
+            -- pyright = {
+            --     disableOrganizeImports = true,
             --     settings = {
-            --         basedpyright = {
-            --             disableOrganizeImports = true,
+            --         python = {
             --             analysis = {
-            --                 typeCheckingMode = "off",
-            --                 diagnosticMode = "openFilesOnly",
-            --                 useLibraryCodeForTypes = true,
-            --                 autoSearchPaths = true,
             --                 ignore = { "*" },
             --             },
             --         },
             --     },
             -- },
+
+            rust_analyzer = {},
+            basedpyright = {
+                settings = {
+                    basedpyright = {
+                        disableOrganizeImports = true,
+                        analysis = {
+                            ignore = { "*" },
+                            typeCheckingMode = "off",
+                            diagnosticMode = "openFilesOnly",
+                            -- useLibraryCodeForTypes = true,
+                            autoSearchPaths = true,
+                        },
+                    },
+                },
+            },
             ruff = {
                 init_options = {
                     settings = {
@@ -153,34 +154,15 @@ return {
                     },
                 },
             },
-            -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-            --
-            -- Some languages (like typescript) have entire language plugins that can be useful:
-            --    https://github.com/pmizio/typescript-tools.nvim
-            --
-            -- But for many setups, the LSP (`ts_ls`) will work just fine
-            -- ts_ls = {},
-            --
-
-            lua_ls = {
-                -- cmd = { ... },
-                -- filetypes = { ... },
-                -- capabilities = {},
-                settings = {
-                    Lua = {
-                        completion = {
-                            callSnippet = "Replace",
-                        },
-                        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                        -- diagnostics = { disable = { 'missing-fields' } },
-                    },
-                },
-            },
         }
 
         local ensure_installed = vim.tbl_keys(servers or {})
         vim.list_extend(ensure_installed, {
-            "stylua", -- Used to format Lua code
+            "clangd",
+            -- "pyright",
+            "basedpyright",
+            "rust_analyzer",
+            "ruff",
         })
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -192,7 +174,7 @@ return {
                     local server = servers[server_name] or {}
                     server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
                     server.handlers = vim.tbl_deep_extend("force", {
-                        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+                        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover),
                         ["textDocument/signatureHelp"] = vim.lsp.with(
                             vim.lsp.handlers.signature_help,
                             { border = "rounded" }

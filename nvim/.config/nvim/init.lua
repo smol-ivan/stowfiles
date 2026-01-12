@@ -1,2 +1,2 @@
-require("smol")
+require("chattini")
 require("lazynvim")
