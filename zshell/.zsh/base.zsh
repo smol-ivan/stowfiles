@@ -4,6 +4,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+if [ ! -d "$ZINIT_HOME" ]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone git@github.com:zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
 source "${ZINIT_HOME}/zinit.zsh"
 
 autoload -U compinit && compinit
