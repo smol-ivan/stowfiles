@@ -16,15 +16,10 @@ return {
         -- notify_on_error = false,
         log_level = vim.log.levels.DEBUG,
         format_on_save = function(bufnr)
-            local disable_filetypes = { c = true, cpp = true }
-            if disable_filetypes[vim.bo[bufnr].filetype] then
-                return nil
-            else
-                return {
-                    timeout_ms = 500,
-                    lsp_format = "fallback",
-                }
-            end
+            return {
+                timeout_ms = 500,
+                lsp_format = "fallback",
+            }
         end,
         formatters_by_ft = {
             lua = { "stylua" },
@@ -33,13 +28,18 @@ return {
                 "ruff_format",
                 "ruff_organize_imports",
             },
+            c = { "clang_format" },
+            cpp = { "clang_format" },
         },
         formatters = {
             stylua = {
                 prepend_args = { "--indent-type", "Spaces", "--indent-width", "4" },
             },
             ruff = {},
+            clang_format = {
+                -- prepend_args = { "-style={BasedOnStyle: Linux, IndentWidth: 4, UseTab: Never, ColumnLimit:80}" },
+                prepend_args = { "-style={BasedOnStyle: LLVM, IndentWidth: 4, UseTab: Never, ColumnLimit: 80}" },
+            },
         },
     },
 }
-

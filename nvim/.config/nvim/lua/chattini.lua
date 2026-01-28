@@ -21,6 +21,13 @@ vim.o.smartcase = true
 
 vim.o.signcolumn = "yes"
 
+vim.opt.list = true
+vim.opt.listchars = {
+    trail = "·",
+    tab = ">·",
+    eol = "$",
+}
+
 -- vim.o.updatetime = 250
 -- vim.o.timeoutlen = 300
 -- vim.o.splitright = true
