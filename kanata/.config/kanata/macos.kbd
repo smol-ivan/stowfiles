@@ -1,0 +1,29 @@
+(defcfg
+  process-unmapped-keys   yes
+  concurrent-tap-hold     yes
+  allow-hardware-repeat   no
+)
+
+(defalias 
+    tap_mod (tap-hold 180 180 esc lctl)
+)
+
+(defsrc
+  esc    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  nubs  1    2    3    4    5    6    7    8    9    0    Minus    Equal    bspc
+  tab    q    w    e    r    t    y    u    i    o    p    BracketLeft    +    
+  caps   a    s    d    f    g    h    j    k    l    Semicolon  Quote   Backslash     ret
+  lsft   Backquote  z    x    c    v    b    n    m    ,    .    Slash    ▲   rsft
+  fn  lctl  lalt  lmet          spc         rmet       ralt     ◀    ▼    ▶
+)
+
+
+(deflayer colemak-dh-wide-iso
+  esc    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  `      1    2    3    4    5    6    =    7    8    9    0    -    bspc
+  tab     q    w    f    p    b    [    j    l    u    y    ;   '    
+  @tap_mod    a    r    s    t    g    ]    m    n    e    i    o    del    ret
+  lsft  lmet   x    c    d    v    z    /    k    h    ,    .         ▲   rsft
+  fn  lctl  lalt  lmet          spc         rmet       ralt     ◀    ▼    ▶
+)
+

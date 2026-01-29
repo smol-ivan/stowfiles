@@ -1,0 +1,11 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  a s d f j k l ;
+)
+
+(deflayer base
+  a r s t n e i o
+)
