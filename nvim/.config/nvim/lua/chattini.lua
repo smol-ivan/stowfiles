@@ -61,6 +61,11 @@ map("n", "<leader>w4", "<Cmd>BufferGoto 4<CR>", opts)
 map("n", "<leader>w5", "<Cmd>BufferGoto 5<CR>", opts)
 map("n", "<leader>wc", "<Cmd>BufferClose<CR>", opts)
 map("n", "<Leader>e", ":NvimTreeToggle<CR>", opts, { desc = "Toggle nerdtree" })
+
+map("n", "<leader>l", function()
+    vim.opt.list = not vim.opt.list:get()
+end, opts, { desc = "Toggle char" })
+
 local function toggle_diagnostics()
     if vim.diagnostic.is_enabled() then
         vim.diagnostic.disable()
@@ -76,3 +81,5 @@ vim.keymap.set("n", "<leader>d", toggle_diagnostics, { desc = "Toggle Virtual Te
 -- map("n", "<leader>e", "<Cmd>Ex<CR>", opts, { desc = "Open Explorer" })
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+vim.opt.guicursor = ""
