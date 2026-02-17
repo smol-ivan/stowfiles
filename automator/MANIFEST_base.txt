@@ -1,0 +1,4 @@
+# Base modules
+zshell
+nvim
+tmux
