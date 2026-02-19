@@ -1,6 +1,10 @@
 #!/usr/bin/bash 
 
-WALL_DIR="$HOME/.wallpaper"
+WALL_DIR="$HOME/.wallpapers"
+
+if [ ! -d $WALL_DIR ]; then
+    git clone git@github.com:smol-ivan/wallpapers.git $HOME/
+fi
 
 mapfile -t WALLS < <(
     ls "$WALL_DIR" \
