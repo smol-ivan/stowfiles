@@ -21,7 +21,7 @@ vim.o.smartcase = true
 
 vim.o.signcolumn = "yes"
 
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.listchars = {
     trail = "·",
     tab = ">·",
@@ -82,4 +82,4 @@ vim.keymap.set("n", "<leader>d", toggle_diagnostics, { desc = "Toggle Virtual Te
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.opt.guicursor = ""
+-- vim.opt.guicursor = ""
