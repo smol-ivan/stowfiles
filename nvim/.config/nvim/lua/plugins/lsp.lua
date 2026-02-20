@@ -138,6 +138,9 @@ return {
                     },
                 },
             },
+            bashls = {
+                filetypes = { "bash", "sh", "zsh" },
+            },
             ruff = {
                 init_options = {
                     settings = {
@@ -159,6 +162,9 @@ return {
             "basedpyright",
             "rust_analyzer",
             "ruff",
+            "shfmt",
+            "bashls",
+            "beautysh",
         })
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

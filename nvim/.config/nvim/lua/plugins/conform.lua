@@ -30,8 +30,13 @@ return {
             },
             c = { "clang_format" },
             cpp = { "clang_format" },
+            zsh = { "beautysh" },
+            sh = { "shfmt" },
+            bash = { "shfmt" },
         },
         formatters = {
+            beautysh = {},
+            shfmt = {},
             stylua = {
                 prepend_args = { "--indent-type", "Spaces", "--indent-width", "4" },
             },

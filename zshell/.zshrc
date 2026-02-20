@@ -1,6 +1,7 @@
-if [[ -z "$SSH_CONNECTION" ]] && [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -z "$SSH_CONNECTION" ]] && [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+eval "$(starship init zsh)"
 
 [[ -n "$SSH_CONNECTION" ]] && export ZSH_REMOTE=1
 
@@ -13,3 +14,5 @@ else
     source ~/.zsh/local.zsh
 fi
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
