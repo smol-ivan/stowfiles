@@ -16,7 +16,6 @@ nodejs
 python
 python-pip
 gcc
-clang
 make
 zip
 unzip
@@ -24,3 +23,4 @@ lazygit
 npm
 which
 bc
+starship
