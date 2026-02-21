@@ -16,6 +16,7 @@ nodejs
 python
 python-pip
 gcc
+clang
 make
 zip
 unzip
