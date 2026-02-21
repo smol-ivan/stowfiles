@@ -22,6 +22,7 @@ return {
                 "moonfly",
                 "bamboo",
                 "catppuccin-mocha",
+                "vague",
             },
             livePreview = true,
         })
