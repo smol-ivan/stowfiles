@@ -33,8 +33,11 @@ return {
             zsh = { "beautysh" },
             sh = { "shfmt" },
             bash = { "shfmt" },
+            latex = { "tex-fmt" },
+            tex = { "tex-fmt" },
         },
         formatters = {
+            tex_fmt = {},
             beautysh = {},
             shfmt = {},
             stylua = {

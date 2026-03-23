@@ -150,6 +150,7 @@ return {
                     },
                 },
             },
+            texlab = {},
         }
 
         local ensure_installed = vim.tbl_keys(servers or {})
@@ -165,6 +166,8 @@ return {
             "shfmt",
             "bashls",
             "beautysh",
+            "texlab",
+            "tex-fmt",
         })
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

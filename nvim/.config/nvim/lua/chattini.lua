@@ -62,7 +62,7 @@ map("n", "<leader>w5", "<Cmd>BufferGoto 5<CR>", opts)
 map("n", "<leader>wc", "<Cmd>BufferClose<CR>", opts)
 map("n", "<Leader>e", ":NvimTreeToggle<CR>", opts, { desc = "Toggle nerdtree" })
 
-map("n", "<leader>l", function()
+map("n", "<leader>tc", function()
     vim.opt.list = not vim.opt.list:get()
 end, opts, { desc = "Toggle char" })
 
@@ -76,10 +76,17 @@ local function toggle_diagnostics()
     end
 end
 
-vim.keymap.set("n", "<leader>d", toggle_diagnostics, { desc = "Toggle Virtual Text" })
+vim.keymap.set("n", "<leader>td", toggle_diagnostics, { desc = "Toggle Virtual Text" })
 
 -- map("n", "<leader>e", "<Cmd>Ex<CR>", opts, { desc = "Open Explorer" })
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- vim.opt.guicursor = ""
+
+-- Mapeos específicos para VimTeX
+-- Con esto, al presionar 'Espacio' + 'l' + 'l' compilarás el reporte
+vim.keymap.set("n", "<leader>ll", "<cmd>VimtexCompile<CR>", { desc = "LaTeX: Compilar/Detener" })
+vim.keymap.set("n", "<leader>lv", "<cmd>VimtexView<CR>", { desc = "LaTeX: Ver PDF" })
+vim.keymap.set("n", "<leader>lt", "<cmd>VimtexTocOpen<CR>", { desc = "LaTeX: Ver Índice" })
+vim.keymap.set("n", "<leader>lc", "<cmd>VimtexClean<CR>", { desc = "LaTeX: Limpiar temporales" })
