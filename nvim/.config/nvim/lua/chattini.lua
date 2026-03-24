@@ -83,6 +83,11 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- vim.opt.guicursor = ""
+vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
+    expr = true,
+    replace_keycodes = false,
+})
+vim.g.copilot_no_tab_map = true
 
 -- Mapeos específicos para VimTeX
 -- Con esto, al presionar 'Espacio' + 'l' + 'l' compilarás el reporte
