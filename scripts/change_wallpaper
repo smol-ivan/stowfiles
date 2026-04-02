@@ -1,4 +1,4 @@
-#!/usr/bin/bash 
+#!/usr/bin/bash
 
 WALL_DIR="$HOME/.wallpapers"
 
@@ -7,22 +7,22 @@ if [ ! -d $WALL_DIR ]; then
 fi
 
 mapfile -t WALLS < <(
-    ls "$WALL_DIR" \
-        | sort
+    ls "$WALL_DIR" |
+        sort
 )
 
 [ ${#WALLS[@]} -eq 0 ] && echo ":(" && exit 1
 
-CURRENT_PATH=$(swww query | grep -oP 'image: \K.*')
+CURRENT_PATH=$(awww query | grep -oP 'image: \K.*')
 CURRENT=$(basename "$CURRENT_PATH")
- 
+
 INDEX=-1
 
 for i in "${!WALLS[@]}"; do
     [[ "${WALLS[$i]}" == "$CURRENT" ]] && INDEX=$i && break
 done
 
-NEXT_INDEX=$(( (INDEX + 1) % ${#WALLS[@]} ))
+NEXT_INDEX=$(((INDEX + 1) % ${#WALLS[@]}))
 NEXT_WALL="${WALLS[$NEXT_INDEX]}"
 
-matugen image "$WALL_DIR/$NEXT_WALL" > /dev/null 2>&1
+matugen image "$WALL_DIR/$NEXT_WALL" --source-color-index 0 >/dev/null 2>&1
