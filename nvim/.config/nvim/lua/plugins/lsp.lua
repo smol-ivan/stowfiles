@@ -168,6 +168,8 @@ return {
             "beautysh",
             "texlab",
             "tex-fmt",
+            "astro",
+            -- "prettier",
         })
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

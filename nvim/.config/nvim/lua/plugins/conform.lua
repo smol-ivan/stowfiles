@@ -35,8 +35,10 @@ return {
             bash = { "shfmt" },
             latex = { "tex-fmt" },
             tex = { "tex-fmt" },
+            astro = { "prettier" },
         },
         formatters = {
+            prettier = {},
             tex_fmt = {},
             beautysh = {},
             shfmt = {},
