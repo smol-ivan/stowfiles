@@ -1,33 +1,42 @@
 return {
-    { -- Highlight, edit, and navigate code
+    {
         "nvim-treesitter/nvim-treesitter",
-        -- branch = "master",
+        lazy = false,
         build = ":TSUpdate",
-        -- main = "nvim-treesitter.configs", -- Sets main module to use for opts
-        -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-        opts = {
-            ensure_installed = {
+        config = function(_, opts)
+            require("nvim-treesitter").setup(opts)
+
+            -- Make sure that the following are installed:
+            require("nvim-treesitter").install({
                 "bash",
                 "c",
-                "diff",
+                "cpp",
+                "fish",
+                "gitcommit",
+                "go",
+                "graphql",
                 "html",
+                "hyprlang",
+                "java",
+                "javascript",
+                "json",
+                "json5",
                 "lua",
-                "luadoc",
                 "markdown",
                 "markdown_inline",
+                "python",
                 "query",
+                "rasi",
+                "regex",
+                "rust",
+                "scss",
+                "toml",
+                "tsx",
+                "typescript",
                 "vim",
                 "vimdoc",
-                "go",
-                "rust",
-                "python",
-                "toml",
-                "latex",
-                "typescript",
-                "css",
-                "astro",
-            },
-            auto_install = true,
-        },
+                "yaml",
+            })
+        end,
     },
 }
