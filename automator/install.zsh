@@ -15,6 +15,7 @@ show_usage() {
     print "  $SCRIPT_NAME sync [manifest]"
     print "  $SCRIPT_NAME refresh [manifest]"
     print "  $SCRIPT_NAME <manifest>                 # atajo para sync"
+    print "  Formato manifiesto: modulo  |  target  (target opcional)"
 }
 
 resolve_manifest() {

@@ -1,4 +1,7 @@
 # Modulos principales de dotfiles
+# Formatos validos:
+#   nvim
+#   scripts | ~/.local/bin
 #global
 #zshell
 #nvim

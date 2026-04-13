@@ -34,11 +34,18 @@ manifest_state_file() {
     print -- "$state_root/$state_hash.entries"
 }
 
+trim_whitespace() {
+    local value=$1
+    value="${value#"${value%%[![:space:]]*}"}"
+    value="${value%"${value##*[![:space:]]}"}"
+    print -- "$value"
+}
+
 manifest_entries() {
     local manifest=$1
     local -a lines
     local -a parts
-    local line module target
+    local line module target raw_module raw_target
 
     lines=("${(@f)$(<"$manifest")}")
 
@@ -47,9 +54,23 @@ manifest_entries() {
             continue
         fi
 
-        parts=(${(z)line})
-        module=$parts[1]
-        target=${parts[2]:-$HOME}
+        if [[ "$line" == *"|"* ]]; then
+            raw_module=${line%%|*}
+            raw_target=${line#*|}
+            module=$(trim_whitespace "$raw_module")
+            target=$(trim_whitespace "$raw_target")
+            target=${target:-$HOME}
+        else
+            parts=(${(z)line})
+            module=$parts[1]
+            target=${parts[2]:-$HOME}
+        fi
+
+        if [[ -z "$module" ]]; then
+            print "Entrada invalida en manifiesto (modulo vacio): $line"
+            return 1
+        fi
+
         target=${~target}
 
         print -- "$module"$'\t'"$target"
