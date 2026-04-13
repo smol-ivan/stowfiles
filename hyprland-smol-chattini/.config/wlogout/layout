@@ -1,0 +1,27 @@
+{
+    "label": "lock",
+    "action": "pidof hyprlock || hyprlock",
+    "text": "Lock",
+    "keybind": "l"
+}
+
+{
+    "label": "logout",
+    "action": "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit",
+    "text": "Logout",
+    "keybind": "e"
+}
+
+{
+    "label": "shutdown",
+    "action": "systemctl poweroff",
+    "text": "Shutdown",
+    "keybind": "s"
+}
+
+{
+    "label": "reboot",
+    "action": "systemctl reboot",
+    "text": "Reboot",
+    "keybind": "r"
+}

@@ -1,0 +1,60 @@
+@import "colors.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "CaskaydiaCove Nerd Font Propo", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.9rem;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+    background: transparent;
+    color: @on_surface;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+
+#workspaces button {
+    padding: 0px 1rem;
+    margin: 0.28rem;
+    border-radius: 16px;
+    background-color: @surface_dim;
+    color: @surface_tint;
+    transition: all 0.3s ease-in-out;
+}
+
+
+#workspaces button.active {
+    color: @surface_container;
+    background-color: @surface_tint;
+    min-width: 46px;
+    background-size: 400% 400%;
+    transition: all 0.3s ease-in-out;
+    /*opacity: 1.0;*/
+}
+
+#workspaces button:hover {
+    color: @tertiary_fixed;
+    background-color: @secondary_container;
+    min-width: 40px;
+    background-size: 400% 400%;
+}
+
+#workspaces button.empty {
+    opacity: 0.4;
+}
+
+#clock,
+#bluetooth,
+#network,
+#pulseaudio,
+#workspaces {
+    background-color: @primary_container;
+    margin: 0.1rem 0.2rem;
+    padding: 0.08rem 1rem;
+    border-radius: 18px;
+}
+

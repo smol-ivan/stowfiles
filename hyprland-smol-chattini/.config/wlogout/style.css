@@ -1,0 +1,52 @@
+/* Importación de colores */
+@import "/home/chattini/.config/waybar/colors.css";
+
+/* Reset general */
+* {
+    font-family: "CaskaydiaCove Nerd Font Propo",sans-serif;
+    background-image: none;
+    font-size: 20px;
+    transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682);
+    color: @secondary;
+}
+
+window {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente detrás de los botones */
+}
+
+button {
+    color: @on_primary_container;
+    background-color: @primary_container;
+    outline-style: none;
+    border: 4px solid transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    border-radius: 30px;
+    margin: 10px;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+button:hover label { color: @on_secondary; }
+
+button:hover {
+    background-color: @on_primary_container;
+    background-size: 30%;
+    border-radius: 40px;
+    border: 4px solid @tertiary; /* Añade un borde sutil del color de tu tema */
+}
+
+
+#lock      { background-image: image(url("/home/chattini/.config/wlogout/icons/lock_black.png")); }
+#logout    { background-image: image(url("/home/chattini/.config/wlogout/icons/logout_black.png")); }
+#suspend   { background-image: image(url("/home/chattini/.config/wlogout/icons/suspend_black.png")); }
+#shutdown  { background-image: image(url("/home/chattini/.config/wlogout/icons/shutdown_black.png")); }
+#hibernate { background-image: image(url("/home/chattini/.config/wlogout/icons/hibernate_black.png")); }
+#reboot    { background-image: image(url("/home/chattini/.config/wlogout/icons/reboot_black.png")); }
+
+/* Animación opcional para que no se sienta estático */
+/* button:active { */
+/*     background-color: @primary; */
+/*     background-size: 20%; */
+/* } */
