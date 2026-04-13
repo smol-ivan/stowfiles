@@ -17,3 +17,13 @@ zstyle ':completion:*' menu no
 
 bindkey -s ^f "tmux_sessionizer\n"
 
+alias ls='eza  --group-directories-first'
+
+# Lista detallada (equivalente a ll)
+alias ll='eza -lh  --group-directories-first'
+
+# Lista detallada incluyendo archivos ocultos (equivalente a la)
+alias la='eza -a -lh  --group-directories-first'
+
+# Vista en árbol (muy útil en eza)
+alias tree='eza --tree '
