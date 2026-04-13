@@ -1,0 +1,15 @@
+# Modulos principales de dotfiles
+#global
+#zshell
+#nvim
+# tmux
+# tmux-sessionizer
+# alacritty
+# ghostty
+# kitty
+# kanata
+#scripts
+#godmacs
+
+# Hyprland (deja solo uno)
+#hyprland-chatinni
