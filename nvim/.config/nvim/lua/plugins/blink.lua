@@ -3,7 +3,7 @@ return {
     -- optional: provides snippets for the snippet source
     dependencies = {
         "L3MON4D3/LuaSnip",
-        -- "rafamadriz/friendly-snippets",
+        "rafamadriz/friendly-snippets",
     },
 
     version = "1.*",

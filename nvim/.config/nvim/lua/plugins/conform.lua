@@ -36,6 +36,9 @@ return {
             latex = { "tex-fmt" },
             tex = { "tex-fmt" },
             astro = { "prettier" },
+            html = { "prettier" },
+            js = { "prettier" },
+            javascript = { "prettier" },
         },
         formatters = {
             prettier = {},
