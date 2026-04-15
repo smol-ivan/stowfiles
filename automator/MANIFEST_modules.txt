@@ -1,18 +1,15 @@
-# Modulos principales de dotfiles
-# Formatos validos:
-#   nvim
-#   scripts | ~/.local/bin
+nvim
+scripts | ~/.local/bin
 #global
-#zshell
-#nvim
-# tmux
-# tmux-sessionizer
-# alacritty
+zshell
+tmux
+tmux-sessionizer
+alacritty
 # ghostty
 # kitty
-# kanata
-#scripts
+kanata
 #godmacs
 
-# Hyprland (deja solo uno)
 #hyprland-chatinni
+hyprland-smol-chattini
+

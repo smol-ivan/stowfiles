@@ -25,3 +25,6 @@ npm
 which
 bc
 starship
+tree-sitter
+tree-sitter-cli
+eza
