@@ -95,3 +95,5 @@ vim.keymap.set("n", "<leader>ll", "<cmd>VimtexCompile<CR>", { desc = "LaTeX: Com
 vim.keymap.set("n", "<leader>lv", "<cmd>VimtexView<CR>", { desc = "LaTeX: Ver PDF" })
 vim.keymap.set("n", "<leader>lt", "<cmd>VimtexTocOpen<CR>", { desc = "LaTeX: Ver Índice" })
 vim.keymap.set("n", "<leader>lc", "<cmd>VimtexClean<CR>", { desc = "LaTeX: Limpiar temporales" })
+
+vim.keymap.set("v", "<C-r>", '"hy:%s/<C-r>h//g<left><left>', { desc = "Buscar y reemplazar selección" })
