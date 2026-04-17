@@ -1,4 +1,4 @@
-nvim
+#nvim
 scripts | ~/.local/bin
 #global
 zshell
@@ -11,5 +11,5 @@ kanata
 #godmacs
 
 #hyprland-chatinni
-hyprland-smol-chattini
+#hyprland-smol-chattini
 
