@@ -20,6 +20,7 @@ clang
 make
 zip
 unzip
+fontconfig
 lazygit
 npm
 which

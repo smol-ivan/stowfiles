@@ -77,6 +77,36 @@ manifest_entries() {
     done
 }
 
+apply_module_stow() {
+    local module=$1
+    local target=$2
+    local preview_output
+    local preview_status
+
+    preview_output=$(stow -n -R -t "$target" -d "$DOTFILES_DIR" "$module" 2>&1)
+    preview_status=$?
+
+    if (( preview_status != 0 )); then
+        if [[ "$preview_output" == *"would cause conflicts"* ]]; then
+            print "Conflictos detectados en $module; aplicando --adopt."
+            if ! stow --adopt -R -t "$target" -d "$DOTFILES_DIR" "$module"; then
+                print "Error en modulo durante adopcion: $module"
+                return 1
+            fi
+            return 0
+        fi
+
+        print -- "$preview_output"
+        print "Error validando modulo: $module"
+        return 1
+    fi
+
+    if ! stow -R -t "$target" -d "$DOTFILES_DIR" "$module"; then
+        print "Error en modulo: $module"
+        return 1
+    fi
+}
+
 apply_stow() {
     local manifest="${1:A}"
     local state_file
@@ -132,8 +162,7 @@ apply_stow() {
 
         [[ ! -d "$target" ]] && mkdir -p "$target"
 
-        if ! stow -R -t "$target" -d "$DOTFILES_DIR" "$module"; then
-            print "Error en modulo: $module"
+        if ! apply_module_stow "$module" "$target"; then
             return 1
         fi
     done
