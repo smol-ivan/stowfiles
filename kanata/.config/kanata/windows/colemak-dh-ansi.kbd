@@ -18,6 +18,22 @@
 
   to-qwty (layer-switch qwerty)
   to-col  (layer-switch colemak-dh-wide)
+  tap_symbols (tap-hold-press 140 180 spc (layer-while-held symbols))
+  bang     S-1      ;; !
+  amp      S-7      ;; &
+  mul      S-8      ;; *
+  lp       S-9      ;; (
+  rp       S-0      ;; )
+  lb       [        ;; [
+  rb       ]        ;; ]
+  lc       S-[      ;; {
+  rc       S-]      ;; }
+  lt       S-,      ;; <
+  gt       S-.      ;; >
+  eq       =        ;; =
+  add      S-=      ;; +
+  sub      -        ;; -
+  bsl      S-\      ;; |
 )
 
 (deflayer colemak-dh-wide
@@ -26,7 +42,16 @@
   tab      q    w    f    p    b    [    j    l    u    y    ;    '    \
   @capsw     a    r    s    t    g    ]    m    n    e    i    o    ret
   lsft        x    c    d    v    z    /    k    h    ,    .    rsft
-  lctl     lmet lalt           spc            ralt rmet _    @to-qwty
+  lctl     lmet lalt           @tap_symbols             ralt rmet _    @to-qwty
+)
+
+(deflayer symbols
+  esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv      1    2    3    4    5    6    =    7    8    9    0    -    bspc
+  tab      q     w     f     @bang     b     _     j     @bsl     u    y    ;    '    \
+  @capsw     @amp    @lc    @lb    @lp    @lt   _    @gt    @rp    @rb    @rc    @mul    ret
+  lsft        x    c    @add    v    z   _    k    @eq    ,    .    rsft
+  lctl     lmet lalt           _            ralt rmet _    @to-qwty
 )
 
 (deflayer qwerty
