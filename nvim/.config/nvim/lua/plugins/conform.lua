@@ -39,6 +39,7 @@ return {
             html = { "prettier" },
             js = { "prettier" },
             javascript = { "prettier" },
+            css = { "prettier" },
         },
         formatters = {
             prettier = {},
