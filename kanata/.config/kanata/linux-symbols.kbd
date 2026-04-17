@@ -17,7 +17,7 @@
 (defalias
   capsw       (tap-hold 200 200 esc lctl)
   tap_symbols (tap-hold-press 140 180 spc (layer-while-held symbols))
-  tap_navnum  (tap-hold-press 140 180 menu (layer-while-held navnum))
+;;  tap_navnum  (tap-hold-press 140 180 menu (layer-while-held navnum))
 
   ;; Ajustado para kb_layout=us + kb_variant=colemak_dh_wide (Hyprland/XKB)
   bang S-1   ;; !
@@ -43,7 +43,7 @@
   tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
   @capsw  a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft       z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl    lmet lalt           @tap_symbols    ralt rmet @tap_navnum rctl
+  lctl    lmet lalt           @tap_symbols    ralt rmet _ rctl
 )
 
 (deflayer symbols
@@ -57,11 +57,11 @@
 
 ;; navnum: izquierda = numpad, derecha = flechas/navegacion
 ;; activar: mantener Menu (tap normal = Menu)
-(deflayer navnum
-  _       _      _      _      _      _      _    _     _    _    _     _    _
-  _       _      _      _      _      _      _    _     _    _    _     _    _    _
-  _       kp7    kp8    kp9    kpsls  kpast  _    home  up   end  pgup  _    _    _
-  _       kp4    kp5    kp6    kpplus kpminus _   left  down rght pgdn  _    _
-  _          kp1    kp2    kp3    kp0    _    _    _    _    _    _    _
-  _       _      _                  _                _    _    _    _
-)
+;;(deflayer navnum
+;;  _       _      _      _      _      _      _    _     _    _    _     _    _
+;;  _       _      _      _      _      _      _    _     _    _    _     _    _    _
+;;  _       kp7    kp8    kp9    kpsls  kpast  _    home  up   end  pgup  _    _    _
+;;  _       kp4    kp5    kp6    kpplus kpminus _   left  down rght pgdn  _    _
+;;  _          kp1    kp2    kp3    kp0    _    _    _    _    _    _    _
+;;  _       _      _                  _                _    _    _    _
+;;)
