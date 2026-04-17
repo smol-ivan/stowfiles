@@ -12,50 +12,49 @@ window#waybar {
     background-color: transparent;
     background: transparent;
     color: @on_surface;
+    transition-property: background-color;
+    transition-duration: .5s;
 }
+
 
 #workspaces button {
-    padding: 0 0.55rem;
-    margin: 0;
-    border-radius: 0;
-    background-color: transparent;
-    color: @on_surface_variant;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    padding: 0px 1rem;
+    margin: 0.28rem;
+    border-radius: 16px;
+    background-color: @surface_dim;
+    color: @surface_tint;
+    transition: all 0.3s ease-in-out;
 }
 
+
 #workspaces button.active {
-    color: @on_primary_container;
-    background-color: @primary_container;
+    color: @surface_container;
+    background-color: @surface_tint;
+    min-width: 46px;
+    background-size: 400% 400%;
+    transition: all 0.3s ease-in-out;
+    /*opacity: 1.0;*/
 }
 
 #workspaces button:hover {
-    color: @on_surface;
-    background-color: @surface_container_high;
+    color: @tertiary_fixed;
+    background-color: @secondary_container;
+    min-width: 40px;
+    background-size: 400% 400%;
 }
 
 #workspaces button.empty {
-    opacity: 0.55;
+    opacity: 0.4;
 }
 
-#workspaces,
-#window,
 #clock,
 #bluetooth,
 #network,
 #pulseaudio,
-#tray {
-    background-color: @surface_container;
-    border: 1px solid @outline_variant;
-    margin: 0.28rem 0.2rem;
-    padding: 0.08rem 0.7rem;
-    border-radius: 0;
-}
-
 #workspaces {
-    padding-left: 0.2rem;
-    padding-right: 0.2rem;
+    background-color: @primary_container;
+    margin: 0.1rem 0.2rem;
+    padding: 0.08rem 1rem;
+    border-radius: 18px;
 }
 
-#window {
-    min-width: 20rem;
-}
