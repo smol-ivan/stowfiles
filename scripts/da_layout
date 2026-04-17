@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+kanata -c $HOME/.config/kanata/linux_symbols.kbd > /dev/null 2>&1
