@@ -11,7 +11,10 @@ mapfile -t WALLS < <(
         sort
 )
 
-[ ${#WALLS[@]} -eq 0 ] && echo ":(" && exit 1
+if [ ${#WALLS[@]} -eq 0 ];then
+        notify-send -u critical -i dialog-error "Error switching wallpaper"
+        exit 1
+fi
 
 CURRENT_PATH=$(awww query | grep -oP 'image: \K.*')
 CURRENT=$(basename "$CURRENT_PATH")
@@ -26,3 +29,6 @@ NEXT_INDEX=$(((INDEX + 1) % ${#WALLS[@]}))
 NEXT_WALL="${WALLS[$NEXT_INDEX]}"
 
 matugen image "$WALL_DIR/$NEXT_WALL" --source-color-index 0 >/dev/null 2>&1
+
+notify-send -u normal -i input-keyboard "Change wallpaper" "Imagen aplicada con exito!"
+
