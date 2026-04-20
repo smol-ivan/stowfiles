@@ -22,6 +22,7 @@ vim.pack.add({
     { src = "https://github.com/kawre/neotab.nvim" },
     { src = "https://github.com/nvim-lualine/lualine.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+    { src = "https://github.com/OXY2DEV/markview.nvim" },
 })
 
 require("neotab").setup()
@@ -75,3 +76,9 @@ end
 require("blink.cmp").setup({})
 
 vim.cmd.colorscheme("tokyonight-night")
+
+require("markview").setup({
+    preview = {
+        icon_provider = "devicons",
+    },
+})
