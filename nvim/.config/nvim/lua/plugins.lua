@@ -1,11 +1,36 @@
-local servers = { "clangd", "lua_ls", "basedpyright", "gopls", "rust_analyzer" }
-local ensure_installed = servers
-vim.list_extend(ensure_installed, {
+local servers = {
+    clangd = {},
+    gopls = {},
+    lua_ls = {},
+    rust_analyzer = {},
+    basedpyright = {
+        settings = {
+            basedpyright = {
+                disableOrganizeImports = true,
+                analysis = {
+                    typeCheckingMode = "off",
+                    diagnosticMode = "openFilesOnly",
+                    autoSearchPaths = true,
+                },
+            },
+        },
+    },
+    ruff = {
+        init_options = {
+            settings = { lint = { enable = true } },
+        },
+    },
+}
+
+local extra_tools = {
     "clang-format",
     "stylua",
     "astro",
     "tailwindcss",
-})
+}
+
+local ensure_installed = vim.tbl_keys(servers)
+vim.list_extend(ensure_installed, extra_tools)
 
 vim.pack.add({
     { src = "https://github.com/folke/tokyonight.nvim" },
@@ -30,7 +55,7 @@ require("neotab").setup()
 require("conform").setup({
     formatters_by_ft = {
         lua = { "stylua" },
-        python = {},
+        python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
         c = { "clang_format" },
         cpp = { "clang_format" },
         astro = { "prettier" },
@@ -57,6 +82,14 @@ require("mason-lspconfig").setup({
 })
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+for server, config in pairs(servers) do
+    config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, config.capabilities or {})
+    vim.lsp.config(server, config)
+    vim.lsp.enable(server)
+end
+
 require("oil").setup({
     columns = { "permissions", "icon" },
     view_options = { show_hidden = true },
@@ -68,10 +101,6 @@ require("mini.surround").setup()
 require("mini.ai").setup()
 
 require("lualine").setup()
-
-for _, server in ipairs(servers) do
-    vim.lsp.enable(server)
-end
 
 require("blink.cmp").setup({})
 
