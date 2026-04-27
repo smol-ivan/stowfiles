@@ -35,6 +35,7 @@
   add  S-7   ;; +
   sub  =     ;; -
   bsl  S-\   ;; |
+  sym_exit _
 )
 
 (deflayer base
@@ -46,14 +47,7 @@
   lctl    lmet lalt           @tap_symbols    ralt rmet _ rctl
 )
 
-(deflayer symbols
-  _       _    _    _    _    _    _    _    _    _    _    _    _
-  _       _    _    _    _    _    _    _    _    _    _    _    _    _
-  _       _    _    _    @bang _    _    _    @bsl  _    _    _    _    _
-  @capsw  @amp @lc  @lb  @lp   @lt  _    @gt  @rp   @rb  @rc  @mul _
-  _          _    _    @add _    _    _    _    @eq  _    _    _
-  _       _    _              _              _    _    _    _
-)
+(include "ansi-symbols-layer.kbd")
 
 ;; navnum: izquierda = numpad, derecha = flechas/navegacion
 ;; activar: mantener Menu (tap normal = Menu)

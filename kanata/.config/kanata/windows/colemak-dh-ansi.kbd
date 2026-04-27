@@ -34,6 +34,7 @@
   add      S-=      ;; +
   sub      -        ;; -
   bsl      S-\      ;; |
+  sym_exit @to-qwty
 )
 
 (deflayer colemak-dh-wide
@@ -45,14 +46,7 @@
   lctl     lmet lalt           @tap_symbols             ralt rmet _    @to-qwty
 )
 
-(deflayer symbols
-  esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  grv      1    2    3    4    5    6    =    7    8    9    0    -    bspc
-  tab      q     w     f     @bang     b     _     j     @bsl     u    y    ;    '    \
-  @capsw     @amp    @lc    @lb    @lp    @lt   _    @gt    @rp    @rb    @rc    @mul    ret
-  lsft        x    c    @add    v    z   _    k    @eq    ,    .    rsft
-  lctl     lmet lalt           _            ralt rmet _    @to-qwty
-)
+(include "../ansi-symbols-layer.kbd")
 
 (deflayer qwerty
   esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
