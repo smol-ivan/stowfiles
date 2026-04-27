@@ -48,6 +48,15 @@ vim.pack.add({
     { src = "https://github.com/nvim-lualine/lualine.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
     { src = "https://github.com/OXY2DEV/markview.nvim" },
+    { src = "https://github.com/akinsho/toggleterm.nvim" },
+})
+
+require("toggleterm").setup({
+    open_mapping = [[<c-\>]],
+    direction = "float",
+    float_opts = {
+        border = "curved",
+    },
 })
 
 require("neotab").setup()
