@@ -6,6 +6,13 @@
 }
 
 {
+    "label" : "hibernate",
+    "action" : "systemctl hibernate",
+    "text" : "Hibernate",
+    "keybind" : "h"
+}
+
+{
     "label": "logout",
     "action": "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit",
     "text": "Logout",
@@ -17,6 +24,13 @@
     "action": "systemctl poweroff",
     "text": "Shutdown",
     "keybind": "s"
+}
+
+{
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "Suspend",
+    "keybind" : "u"
 }
 
 {
