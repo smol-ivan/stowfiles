@@ -87,7 +87,7 @@
   @tap_mod @amp @lc   @lb   @lp   @lt  _    @gt    @rp   @rb   @rc   @mul _    _
 
   ;; Row 5 (14)
-  _    _    _    @add  _    _    _    _    @eq    _    _    _    _    _
+  _    _    _    _    @add  _    _    _    _    @eq    _    _    _    _  
 
   ;; Row 6 (10)
   _    _    _    _    _    _    _    _    _    _
