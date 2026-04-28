@@ -45,3 +45,7 @@ vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>")
 vim.keymap.set("n", "<leader>lf", function()
     require("conform").format({ async = true, lsp_format = "fallback" })
 end)
+
+vim.keymap.set("n", "<leader>lc", "<cmd>VimtexCompile<CR>")
+vim.keymap.set("n", "<leader>lv", "<cmd>VimtexView<CR>")
+vim.keymap.set("n", "<leader>lr", "<cmd>VimtexClean<CR>")

@@ -20,6 +20,7 @@ local servers = {
             settings = { lint = { enable = true } },
         },
     },
+    texlab = {},
 }
 
 local extra_tools = {
@@ -27,6 +28,7 @@ local extra_tools = {
     "stylua",
     "astro",
     "tailwindcss",
+    "tex-fmt",
 }
 
 local ensure_installed = vim.tbl_keys(servers)
@@ -49,7 +51,26 @@ vim.pack.add({
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
     { src = "https://github.com/OXY2DEV/markview.nvim" },
     { src = "https://github.com/akinsho/toggleterm.nvim" },
+    { src = "https://github.com/lervag/vimtex" },
 })
+
+
+vim.g.vimtex_compiler_method = "latexmk"
+vim.g.vimtex_compiler_latexmk = {
+    options = {
+        "-pdf",
+        "-shell-escape",
+        "-verbose",
+        "-file-line-error",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+    },
+}
+vim.g.vimtex_compiler_latexmk_engines = {
+    _ = "-pdf",
+}
+-- vim.g.vimtex_view_method = "zathura"
+vim.g.vimtex_view_method = "skim"
 
 require("toggleterm").setup({
     open_mapping = [[<c-\>]],
@@ -72,6 +93,8 @@ require("conform").setup({
         javascript = { "prettier" },
         css = { "prettier" },
         rust = { "rustfmt" },
+        tex = { "tex-fmt" },
+        latex = { "tex-fmt" },
     },
     formatters = {
         stylua = {
