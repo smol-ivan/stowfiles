@@ -2,13 +2,10 @@
 import = [ "~/.config/alacritty/gruber_darker.toml"]
 
 [window]
-# padding = { x = 5, y = 5 }
 dynamic_padding = true
-decorations = "None"
-opacity  = 0.95
 
 [font]
 normal = {family = "Maple Mono NF", style = "Regular" }
-size = 15
+size = 17
 
 [cursor]

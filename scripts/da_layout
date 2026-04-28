@@ -1,0 +1,24 @@
+#!/bin/bash
+
+CONFIG="$HOME/.config/kanata/linux-symbols.kbd"
+LOG_FILE="/tmp/kanata.log"
+KANATA="/home/chattini/.local/bin/kanata"
+
+# 1. Matar procesos anteriores
+pkill kanata
+
+# 2. Lanzar kanata en SEGUNDO PLANO (importante el &)
+# Si no pones el '&', el script se queda trabado ahí y nunca llega al notify-send
+"$KANATA" -c "$CONFIG" > "$LOG_FILE" 2>&1 &
+
+# 3. Esperar a que el proceso se asiente
+sleep 0.5
+
+# 4. Verificar (Cuidado: era 'pgrep', no 'prgrep')
+if pgrep -x "kanata" > /dev/null; then
+    notify-send -u normal -i input-keyboard "Kanata" "Configuración cargada con éxito"
+else
+    # Si falla, te avisamos y te mostramos el error del log
+    ERROR=$(tail -n 1 "$LOG_FILE")
+    notify-send -u critical -i dialog-error "Error en Kanata" "$ERROR"
+fi

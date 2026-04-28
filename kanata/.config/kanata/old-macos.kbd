@@ -1,0 +1,117 @@
+;; ============================================================
+;; Kanata config — Colemak-DH (ISO) + Symbol Layer (Mirror)
+;; ============================================================
+
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+  allow-hardware-repeat no
+  macos-dev-names-include (
+    "Apple Internal Keyboard / Trackpad"
+  )
+)
+
+;; ------------------------------------------------------------
+;; macOS overrides
+;; ------------------------------------------------------------
+(platform (macos)
+  (defoverrides
+    (lmet bspc) (lalt bspc)
+    (lmet left) (lalt left)
+    (lmet right) (lalt right)
+  )
+)
+
+;; ==========================================================
+;; Symbol aliases
+;; ==========================================================
+
+(defalias
+  ;; Tap-hold mods
+  tap_mod   (tap-hold 180 180 esc lctl)
+
+  ;; Space → tap = space | hold = symbols
+  spc_sym   (tap-hold-press 140 180 spc (layer-while-held sym))
+
+  ;; --------------------------------------------------------
+  ;; FUTURO (macros auto-pair, NO USADAS AHORA)
+  ;; --------------------------------------------------------
+  ;; paren     (macro S-9 S-0 left)    ;; ()
+  ;; bracket  (macro [ ] left)        ;; []
+  ;; brace    (macro S-[ S-] left)    ;; {}
+  ;; angle    (macro S-, S-. left)    ;; <>
+
+  ;; --------------------------------------------------------
+  ;; Símbolos simples (sin macros)
+  ;; --------------------------------------------------------
+  lp       S-9      ;; (
+  rp       S-0      ;; )
+  lb       [        ;; [
+  rb       ]        ;; ]
+  lc       S-[      ;; {
+  rc       S-]      ;; }
+  lt       S-,      ;; <
+  gt       S-.      ;; >
+  eq       =
+  neq      (macro S-1 =)  ;; !=  ← este puedes quitar luego si quieres
+  mul      S-8      ;; *
+  add      S-=      ;; +
+  sub      -
+  amp      S-7      ;; &
+  bsl      S-\      ;; |
+)
+
+;; ------------------------------------------------------------
+;; Physical keyboard (ISO)
+;; ------------------------------------------------------------
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  nubs 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]
+  caps a    s    d    f    g    h    j    k    l    ;    '    \    ret
+  lsft grv  z    x    c    v    b    n    m    ,    .    /    up   rsft
+  fn   lctl lalt lmet      spc            rmet      ralt left down rght
+)
+
+;; ------------------------------------------------------------
+;; Base layer — Colemak-DH Wide ISO
+;; ------------------------------------------------------------
+(deflayer colemak-dh-wide-iso
+  esc   🔅   🔆    ✗    ✗    ✗    ✗    ◀◀   ▶⏸   ▶▶   🔇   🔉   🔊
+  grv  1    2    3    4    5    6    =    7    8    9    0    -    bspc
+  tab  q    w    f    p    b    [    j    l    u    y    ;    '
+  @tap_mod a    r    s    t    g    ]    m    n    e    i    o    \    ret
+  lsft lmet x    c    d    v    z    /    k    h    ,    .         up   rsft
+  fn   lctl lalt lmet      @spc_sym        rmet      ralt     left down rght
+)
+
+;; ------------------------------------------------------------
+;; Symbol layer — mirror, home-row, programming-focused
+;; ------------------------------------------------------------
+;; Home row (Colemak-DH):
+;; a r s t g    m n e i o
+;;
+;; { [ (        ) ] }
+;; < = >        & | !=
+;;     *  +  -
+;; ------------------------------------------------------------
+(deflayer sym
+  ;; Row 1 (13)
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+
+  ;; Row 2 (14)
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+
+  ;; Row 3 (13)
+  _    @mul   @add   @sub    _    _    _    _    _    _    _    _    _
+
+  ;; Row 4 (14)  ← HOME ROW (a r s t g | h j k l ; ' \)
+  _    _    @lc   @lb   @lp   _    _    _      @rp   @rb   @rc   _    _   _  
+
+  ;; Row 5 (14)
+  _    _    @lt   @eq   @gt   _    _   _    _    @amp  @bsl @neq   _    _    
+
+  ;; Row 6 (10)
+  _    _    _     _   _    _    _    _    _    _
+)
+

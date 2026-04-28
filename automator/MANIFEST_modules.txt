@@ -1,0 +1,15 @@
+nvim
+scripts | ~/.local/bin
+#global
+zshell
+tmux
+tmux-sessionizer
+alacritty
+# ghostty
+# kitty
+kanata
+#godmacs
+
+#hyprland-chatinni
+hyprland-smol-chattini
+

@@ -1,14 +1,15 @@
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [ ! -d "$ZINIT_HOME" ]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone git@github.com:zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 source "${ZINIT_HOME}/zinit.zsh"
 
 autoload -U compinit && compinit
 
- 
+
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE

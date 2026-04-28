@@ -1,0 +1,94 @@
+;; ============================================================
+;; Kanata config — MacBook ISO (MX) + Colemak-DH + Symbol Layer
+;; ============================================================
+
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+  allow-hardware-repeat no
+)
+
+;; ------------------------------------------------------------
+;; macOS overrides
+;; ------------------------------------------------------------
+(platform (macos)
+  (defoverrides
+    (lmet bspc) (lalt bspc)
+    (lmet left) (lalt left)
+    (lmet right) (lalt right)
+  )
+)
+
+;; ==========================================================
+;; Symbol aliases
+;; ==========================================================
+
+(defalias
+  tap_mod   (tap-hold 180 180 esc lctl)
+  spc_sym   (tap-hold-press 140 180 spc (layer-while-held sym))
+
+  lp       S-9      ;; (
+  rp       S-0      ;; )
+  lb       [        ;; [
+  rb       ]        ;; ]
+  lc       S-[      ;; {
+  rc       S-]      ;; }
+  lt       S-,      ;; <
+  gt       S-.      ;; >
+  eq       =
+  bang      S-1      ;; !
+  mul      S-8      ;; *
+  add      S-=      ;; +
+  sub      -
+  amp      S-7      ;; &
+  bsl      S-\      ;; |
+  hash     S-3      ;; #
+  usd      S-4      ;; $
+)
+
+;; ------------------------------------------------------------
+;; Physical keyboard (MacBook ISO)
+;; ------------------------------------------------------------
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  nubs 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]
+  caps a    s    d    f    g    h    j    k    l    ;    '    \    ret
+  lsft grv  z    x    c    v    b    n    m    ,    .    /    up   rsft
+  fn   lctl lalt lmet      spc            rmet      ralt left down rght
+)
+
+;; ------------------------------------------------------------
+;; Base layer — Colemak-DH Wide ISO
+;; ------------------------------------------------------------
+(deflayer colemak-dh-wide-iso
+  esc   🔅   🔆    ✗    ✗    ✗    ✗    ◀◀   ▶⏸   ▶▶   🔇   🔉   🔊
+  grv  1    2    3    4    5    6    =    7    8    9    0    -    bspc
+  tab  q    w    f    p    b    [    j    l    u    y    ;    '
+  @tap_mod a    r    s    t    g    ]    m    n    e    i    o    \    ret
+  lsft lmet x    c    d    v    z    /    k    h    ,    .         up   rsft
+  fn   lctl lalt lmet      @spc_sym        rmet      ralt     left down rght
+)
+
+;; ------------------------------------------------------------
+;; Symbol layer — mirror, home-row, programming-focused
+;; ------------------------------------------------------------
+(deflayer sym
+  ;; Row 1 (13)
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+
+  ;; Row 2 (14)
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+
+  ;; Row 3 (13)
+  _    _      _      _       @bang _    _    _    @bsl    _        _      _    _
+
+  ;; Row 4 (14)  
+  @tap_mod @amp @lc   @lb   @lp   @lt  _    @gt    @rp   @rb   @rc   @mul _    _
+
+  ;; Row 5 (14)
+  _    _    _    @add  _    _    _    _    @eq    _    _    _    _    _
+
+  ;; Row 6 (10)
+  _    _    _    _    _    _    _    _    _    _
+)

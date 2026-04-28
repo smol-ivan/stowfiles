@@ -1,0 +1,11 @@
+;; Shared ANSI symbols layer shape for homerow-focused symbols.
+;; Keep OS/layout-specific symbol aliases in each platform file.
+
+(deflayer symbols
+  _       _    _    _    _    _    _    _    _    _    _    _    _
+  _       _    _    _    _    _    _    _    _    _    _    _    _    _
+  _       _    _    _    @bang _    _    _    @bsl  _    _    _    _    _
+  @capsw  @amp @lc  @lb  @lp   @lt  _    @gt  @rp   @rb  @rc  @mul _
+  _       _    _    @add _    _    _    _    @eq  _    _    _
+  _       _    _              _              _    _    _    @sym_exit
+)

@@ -1,2 +1,3 @@
-require("smol")
-require("lazynvim")
+require("settings")
+require("plugins")
+require("keymaps")
