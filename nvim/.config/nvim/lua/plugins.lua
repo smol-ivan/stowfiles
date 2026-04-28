@@ -52,8 +52,8 @@ vim.pack.add({
     { src = "https://github.com/OXY2DEV/markview.nvim" },
     { src = "https://github.com/akinsho/toggleterm.nvim" },
     { src = "https://github.com/lervag/vimtex" },
+    { src = "https://github.com/olimorris/persisted.nvim" },
 })
-
 
 vim.g.vimtex_compiler_method = "latexmk"
 vim.g.vimtex_compiler_latexmk = {
@@ -133,6 +133,19 @@ require("mini.surround").setup()
 require("mini.ai").setup()
 
 require("lualine").setup()
+
+require("persisted").setup({
+    save_dir = vim.fn.expand("~/.local/share/nvim/sessions/"),
+    autosave = true,
+    autoload = true,
+    on_autoload_no_session = function()
+        vim.notify("No session loaded")
+    end,
+    follow_working_directory = true,
+    allowed_dirs = nil,
+    ignored_dirs = nil,
+    ignored_filetypes = { "gitcommit", "gitrebase" },
+})
 
 require("blink.cmp").setup({})
 

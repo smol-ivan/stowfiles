@@ -46,6 +46,21 @@ vim.keymap.set("n", "<leader>lf", function()
     require("conform").format({ async = true, lsp_format = "fallback" })
 end)
 
+vim.keymap.set("n", "<leader>ss", function()
+    require("persisted").save()
+    vim.notify("Session saved")
+end)
+
+vim.keymap.set("n", "<leader>sl", function()
+    require("persisted").load()
+    vim.notify("Session loaded")
+end)
+
+vim.keymap.set("n", "<leader>sd", function()
+    require("persisted").delete()
+    vim.notify("Session deleted")
+end)
+
 vim.keymap.set("n", "<leader>lc", "<cmd>VimtexCompile<CR>")
 vim.keymap.set("n", "<leader>lv", "<cmd>VimtexView<CR>")
 vim.keymap.set("n", "<leader>lr", "<cmd>VimtexClean<CR>")
