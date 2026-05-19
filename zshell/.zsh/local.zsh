@@ -6,10 +6,24 @@ fi
 bindkey -v
 export KEYTIMEOUT=1
 
+# Habilitar Ctrl+R en modo VI para búsqueda histórica
+bindkey -M viins '^R' history-incremental-search-backward
+bindkey -M vicmd '^R' history-incremental-search-backward
+
+zinit ice from"gh-r" as"command"
+
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-history-substring-search
 zinit light Aloxaf/fzf-tab
+zinit load junegunn/fzf
+
+# Configurar history-substring-search en VI mode
+bindkey -M viins '^P' history-substring-search-up
+bindkey -M viins '^N' history-substring-search-down
+bindkey -M vicmd '^P' history-substring-search-up
+bindkey -M vicmd '^N' history-substring-search-down
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
