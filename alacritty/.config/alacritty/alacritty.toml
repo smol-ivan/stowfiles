@@ -1,11 +1,12 @@
 [general]
-import = [ "~/.config/alacritty/gruber_darker.toml"]
+# import = [ "~/.config/alacritty/gruber_darker.toml"]
+import = [ "~/.config/alacritty/kanawaga_dragon.toml"]
 
 [window]
 dynamic_padding = true
 
 [font]
 normal = {family = "Maple Mono NF", style = "Regular" }
-size = 17
+size = 15
 
 [cursor]
