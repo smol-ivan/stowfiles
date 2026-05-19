@@ -147,7 +147,9 @@ require("persisted").setup({
     ignored_filetypes = { "gitcommit", "gitrebase" },
 })
 
-require("blink.cmp").setup({})
+require("blink.cmp").setup({
+    signature = { enabled = true }
+})
 
 vim.cmd.colorscheme("tokyonight-night")
 

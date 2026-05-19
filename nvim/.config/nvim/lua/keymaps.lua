@@ -64,3 +64,7 @@ end)
 vim.keymap.set("n", "<leader>lc", "<cmd>VimtexCompile<CR>")
 vim.keymap.set("n", "<leader>lv", "<cmd>VimtexView<CR>")
 vim.keymap.set("n", "<leader>lr", "<cmd>VimtexClean<CR>")
+
+vim.keymap.set("i", "<C-k>", function()
+    require("blink.cmp").signature.toggle()
+end, { noremap = true, silent = true })

@@ -52,6 +52,10 @@
       "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
       "src": "https://github.com/stevearc/oil.nvim"
     },
+    "persisted.nvim": {
+      "rev": "1a8e9dcf277d61105619498b2002c287c50424b8",
+      "src": "https://github.com/olimorris/persisted.nvim"
+    },
     "picker.nvim": {
       "rev": "1326b2251b9fbce9a6326b8f6a3963198b8cca90",
       "src": "https://github.com/wsdjeg/picker.nvim"
@@ -63,6 +67,10 @@
     "tokyonight.nvim": {
       "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
       "src": "https://github.com/folke/tokyonight.nvim"
+    },
+    "vimtex": {
+      "rev": "0f42a5130432d4af2e6fd21fb93a76915ff1f090",
+      "src": "https://github.com/lervag/vimtex"
     }
   }
 }
