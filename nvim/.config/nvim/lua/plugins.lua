@@ -21,6 +21,7 @@ local servers = {
         },
     },
     texlab = {},
+    marksman = {},
 }
 
 local extra_tools = {
@@ -29,6 +30,7 @@ local extra_tools = {
     "astro",
     "tailwindcss",
     "tex-fmt",
+    "oxfmt",
 }
 
 local ensure_installed = vim.tbl_keys(servers)
@@ -53,7 +55,22 @@ vim.pack.add({
     { src = "https://github.com/akinsho/toggleterm.nvim" },
     { src = "https://github.com/lervag/vimtex" },
     { src = "https://github.com/olimorris/persisted.nvim" },
+    { src = "https://github.com/toppair/peek.nvim" },
 })
+
+
+require("peek").setup({
+    auto_load = true, -- Carga el preview automáticamente al abrir un markdown
+    close_on_bwrite = true, -- Cierra el preview al guardar el archivo
+    syntax = true, -- Habilita resaltado de sintaxis
+    theme = "dark", -- Tema del preview
+    update_on_change = true,
+})
+
+vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+
+vim.keymap.set("n", "<leader>mp", "<cmd>PeekOpen<CR>", { desc = "Abrir Markdown Preview" })
 
 vim.g.vimtex_compiler_method = "latexmk"
 vim.g.vimtex_compiler_latexmk = {
@@ -95,6 +112,8 @@ require("conform").setup({
         rust = { "rustfmt" },
         tex = { "tex-fmt" },
         latex = { "tex-fmt" },
+        markdown = { "oxfmt" },
+        md = { "oxfmt" },
     },
     formatters = {
         stylua = {
