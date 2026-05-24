@@ -31,6 +31,7 @@ local extra_tools = {
     "tailwindcss",
     "tex-fmt",
     "oxfmt",
+    "beautysh",
 }
 
 local ensure_installed = vim.tbl_keys(servers)
@@ -57,7 +58,6 @@ vim.pack.add({
     { src = "https://github.com/olimorris/persisted.nvim" },
     { src = "https://github.com/toppair/peek.nvim" },
 })
-
 
 require("peek").setup({
     auto_load = true, -- Carga el preview automáticamente al abrir un markdown
@@ -114,6 +114,7 @@ require("conform").setup({
         latex = { "tex-fmt" },
         markdown = { "oxfmt" },
         md = { "oxfmt" },
+        zsh = { "beautysh" },
     },
     formatters = {
         stylua = {
@@ -167,7 +168,7 @@ require("persisted").setup({
 })
 
 require("blink.cmp").setup({
-    signature = { enabled = true }
+    signature = { enabled = true },
 })
 
 vim.cmd.colorscheme("tokyonight-night")
