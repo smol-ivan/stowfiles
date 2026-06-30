@@ -12,7 +12,6 @@ bindkey -M vicmd '^R' history-incremental-search-backward
 
 zinit ice from"gh-r" as"command"
 
-zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-history-substring-search
