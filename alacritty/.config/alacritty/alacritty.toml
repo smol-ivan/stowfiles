@@ -6,7 +6,7 @@ import = [ "~/.config/alacritty/kanawaga_dragon.toml"]
 dynamic_padding = true
 
 [font]
-normal = {family = "Maple Mono NF", style = "Regular" }
+normal = {family = "Maple Mono NF CN", style = "Regular" }
 size = 15
 
 [cursor]
