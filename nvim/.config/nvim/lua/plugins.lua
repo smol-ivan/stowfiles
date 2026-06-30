@@ -42,6 +42,7 @@ vim.pack.add({
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/saghen/blink.cmp" },
+    { src = "https://github.com/saghen/blink.lib" },
     { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/mason-org/mason-lspconfig.nvim" },
     { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
@@ -167,7 +168,9 @@ require("persisted").setup({
     ignored_filetypes = { "gitcommit", "gitrebase" },
 })
 
-require("blink.cmp").setup({
+local cmp = require("blink.cmp")
+cmp.build():wait(6000)
+cmp.setup({
     signature = { enabled = true },
 })
 
