@@ -34,6 +34,10 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<leader>y", '"+y<CR>')
 vim.keymap.set("v", "<leader>y", '"+y<CR>')
 
+-- vim.keymap.set("x", "p", [["_dP"]])
+-- vim.keymap.set({ "n", "v" }, "m", '"_d')
+vim.keymap.set("v", "mm", '"_dd')
+
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
