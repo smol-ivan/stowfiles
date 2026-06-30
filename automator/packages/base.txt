@@ -39,9 +39,14 @@ hypridle
 hyprland
 hyprlauncher
 hyprlock
-hyprpoolkitagent
+hyprpolkitagent
+hyprshutdown
 matugen
 rofi
 waybar
 zathura
 zathura-pdf-mupdf
+wlogout
+awww
+slurp
+grim
