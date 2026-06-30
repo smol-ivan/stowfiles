@@ -47,6 +47,7 @@ window#waybar {
     opacity: 0.4;
 }
 
+#tray,
 #clock,
 #bluetooth,
 #network,
