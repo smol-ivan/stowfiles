@@ -1,9 +1,10 @@
 #!/usr/bin/bash
 
-WALL_DIR="$HOME/.wallpapers"
+WALL_DIR="$HOME/bone/wallpapers/.wallpapers"
+WALL_REPO="$HOME/bone/"
 
 if [ ! -d $WALL_DIR ]; then
-    git clone git@github.com:smol-ivan/wallpapers.git $HOME/
+    git clone git@github.com:smol-ivan/wallpapers.git "$WALL_REPO"
 fi
 
 mapfile -t WALLS < <(
