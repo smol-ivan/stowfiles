@@ -1,13 +1,5 @@
--- This is an example Hyprland Lua config file.
--- Refer to the wiki for more information.
--- https://wiki.hypr.land/Configuring/Start/
-
--- Please note not all available settings / options are set here.
--- For a full list, see the wiki
-
--- You can (and should!!) split this configuration into multiple files
--- Create your files separately and then require them like this:
--- require("myColors")
+require("colors")
+local colors = require("colors")
 
 ------------------
 ---- MONITORS ----
@@ -94,8 +86,8 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+            active_border = colors.primary,
+            inactive_border = colors.outline,
         },
 
         resize_on_border = false,
