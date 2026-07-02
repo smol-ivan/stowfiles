@@ -233,6 +233,8 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(waybar))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(clipboard))
 -- FILE MANAGER
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+-- FULLSCREEN
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 
 -- MENU
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
@@ -256,7 +258,7 @@ hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
     hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-    hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i, false }))
+    hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i, follow = false }))
 end
 
 -- Scroll through existing workspaces with mainMod + scroll
