@@ -28,6 +28,12 @@ hl.monitor({
     scale = "1.25",
 })
 
+hl.config({
+    xwayland = {
+        force_zero_scaling = true,
+    },
+})
+
 hl.workspace_rule({ workspace = "1", monitor = "DP-1", persistent = true })
 hl.workspace_rule({ workspace = "2", monitor = "DP-1", persistent = true })
 hl.workspace_rule({ workspace = "5", monitor = "DP-1", persistent = true })
