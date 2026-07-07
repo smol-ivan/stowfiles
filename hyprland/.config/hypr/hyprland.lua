@@ -36,7 +36,6 @@ hl.workspace_rule({ workspace = "4", monitor = "HDMI-A-1", persistent = true })
 ---- MY PROGRAMS ----
 ---------------------
 
--- Set programs that you use
 local terminal = "alacritty"
 local fileManager = "thunar"
 local menu = "pkill rofi || .config/rofi/launchers/type-1/launcher.sh"
@@ -46,7 +45,7 @@ local clipboard =
 local waybar = "killall -9 waybar || waybar &"
 local da_script = "/home/cherry/.local/bin/change_wallpaper"
 local llogout = "wlogout"
-local da_ss = "grim -g '$(slurp)' ~/Screenshot/$(date +%Y-%m-%d_%H-%m-%s).png"
+local da_ss = "bash -c \"grim -g '$(slurp)' /home/cherry/Pictures/$(date +'%Y-%m-%d_%H-%M-%S').png\""
 local kanata = "/home/cherry/.local/bin/da_layout"
 
 -------------------
@@ -227,6 +226,8 @@ hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(clipboard))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 -- FULLSCREEN
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
+-- Screenshot
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(da_ss))
 
 -- MENU
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
