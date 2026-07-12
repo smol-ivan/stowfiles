@@ -72,3 +72,5 @@ vim.keymap.set("n", "<leader>lr", "<cmd>VimtexClean<CR>")
 vim.keymap.set("i", "<C-k>", function()
     require("blink.cmp").signature.toggle()
 end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>ts", ":Themery<CR>")

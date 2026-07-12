@@ -32,10 +32,46 @@ local extra_tools = {
     "tex-fmt",
     "oxfmt",
     "beautysh",
+    "prettier",
+    "prettierd",
+    "dockerfmt",
 }
 
 local ensure_installed = vim.tbl_keys(servers)
 vim.list_extend(ensure_installed, extra_tools)
+
+local parsers = {
+    "astro",
+    "bash",
+    "c",
+    "cpp",
+    "css",
+    "fish",
+    "gitcommit",
+    "go",
+    "graphql",
+    "html",
+    "hyprlang",
+    "java",
+    "javascript",
+    "json",
+    "json5",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "python",
+    "query",
+    "rasi",
+    "regex",
+    "rust",
+    "scss",
+    "toml",
+    "tsx",
+    "typescript",
+    "vim",
+    "vimdoc",
+    "yaml",
+}
 
 vim.pack.add({
     { src = "https://github.com/folke/tokyonight.nvim" },
@@ -58,7 +94,48 @@ vim.pack.add({
     { src = "https://github.com/lervag/vimtex" },
     { src = "https://github.com/olimorris/persisted.nvim" },
     { src = "https://github.com/toppair/peek.nvim" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
+    { src = "https://github.com/thimc/gruber-darker.nvim" },
+    { src = "https://github.com/nyoom-engineering/oxocarbon.nvim" },
+    { src = "https://github.com/ellisonleao/gruvbox.nvim" },
+    { src = "https://github.com/rose-pine/neovim", variant = "main", name = "rose-pine" },
+    { src = "https://github.com/rebelot/kanagawa.nvim" },
+    { src = "https://github.com/vague-theme/vague.nvim" },
+    { src = "https://github.com/EdenEast/nightfox.nvim" },
+    { src = "https://github.com/everviolet/nvim" },
+    { src = "https://github.com/sainnhe/gruvbox-material" },
+    { src = "https://github.com/folke/tokyonight.nvim" },
+    { src = "https://github.com/bluz71/vim-moonfly-colors", name = "moonfly" },
+    { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
+    { src = "https://github.com/zaldih/themery.nvim" },
 })
+-- Main-branch nvim-treesitter ships queries under `runtime/queries/`,
+-- which isn't on rtp by default. Prepend it so highlights/folds/indents
+-- are visible to `vim.treesitter.start`.
+local ts_init = vim.api.nvim_get_runtime_file("lua/nvim-treesitter/init.lua", false)[1]
+if ts_init then
+    vim.opt.runtimepath:prepend(vim.fn.fnamemodify(ts_init, ":h:h:h") .. "/runtime")
+end
+
+require("nvim-treesitter").install(parsers):wait(300000)
+
+require("treesitter-context").setup({
+    max_lines = 3,
+    multiline_threshold = 1,
+    min_window_height = 20,
+})
+
+vim.keymap.set("n", "[c", function()
+    if vim.wo.diff then
+        return "[c"
+    else
+        vim.schedule(function()
+            require("treesitter-context").go_to_context()
+        end)
+        return "<Ignore>"
+    end
+end, { desc = "Jump to upper context", expr = true })
 
 require("peek").setup({
     auto_load = true, -- Carga el preview automáticamente al abrir un markdown
@@ -87,8 +164,8 @@ vim.g.vimtex_compiler_latexmk = {
 vim.g.vimtex_compiler_latexmk_engines = {
     _ = "-pdf",
 }
--- vim.g.vimtex_view_method = "zathura"
-vim.g.vimtex_view_method = "skim"
+vim.g.vimtex_view_method = "zathura"
+-- vim.g.vimtex_view_method = "skim"
 
 require("toggleterm").setup({
     open_mapping = [[<c-\>]],
@@ -106,18 +183,23 @@ require("conform").setup({
         python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
         c = { "clang_format" },
         cpp = { "clang_format" },
-        astro = { "prettier" },
-        html = { "prettier" },
-        javascript = { "prettier" },
-        css = { "prettier" },
+        astro = { "prettierd", "prettier", stop_after_first = true },
+        -- html = { "prettier" },
+        html = { "oxfmt" },
+        javascript = { "oxfmt" },
+        css = { "oxfmt" },
         rust = { "rustfmt" },
         tex = { "tex-fmt" },
         latex = { "tex-fmt" },
         markdown = { "oxfmt" },
         md = { "oxfmt" },
         zsh = { "beautysh" },
+        dockerfile = { "dockerfmt" },
     },
     formatters = {
+        oxfmt = {
+            prepend_args = { "-c", vim.fn.expand("~/.oxfmt.json"), "$FILENAME" },
+        },
         stylua = {
             prepend_args = { "--indent-type", "Spaces", "--indent-width", "4" },
         },
@@ -172,6 +254,31 @@ local cmp = require("blink.cmp")
 cmp.build():wait(6000)
 cmp.setup({
     signature = { enabled = true },
+})
+
+require("themery").setup({
+    themes = {
+        "gruber-darker",
+        "oxocarbon",
+        "gruvbox",
+        "rose-pine",
+        "kanagawa-wave",
+        "kanagawa-dragon",
+        "nightfox",
+        "duskfox",
+        "carbonfox",
+        -- "evergarden-winter",
+        -- "evergarden-fall",
+        -- "evergarden-spring",
+        "tokyonight-night",
+        "tokyonight-moon",
+        "tokyonight-storm",
+        "moonfly",
+        -- "bamboo",
+        "catppuccin-mocha",
+        "vague",
+    },
+    livePreview = true,
 })
 
 vim.cmd.colorscheme("tokyonight-night")
