@@ -22,6 +22,7 @@ local servers = {
     },
     texlab = {},
     marksman = {},
+    terraformls = {},
 }
 
 local extra_tools = {
@@ -35,6 +36,7 @@ local extra_tools = {
     "prettier",
     "prettierd",
     "dockerfmt",
+    "terraform",
 }
 
 local ensure_installed = vim.tbl_keys(servers)
@@ -71,6 +73,8 @@ local parsers = {
     "vim",
     "vimdoc",
     "yaml",
+    "terraform",
+    "dockerfile",
 }
 
 vim.pack.add({
@@ -195,6 +199,8 @@ require("conform").setup({
         md = { "oxfmt" },
         zsh = { "beautysh" },
         dockerfile = { "dockerfmt" },
+        terraform = { "terraform" },
+        tf = { "terraform" },
     },
     formatters = {
         oxfmt = {
