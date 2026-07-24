@@ -201,6 +201,8 @@ require("conform").setup({
         dockerfile = { "dockerfmt" },
         terraform = { "terraform" },
         tf = { "terraform" },
+        yaml = { "oxfmt" },
+        yml = { "oxfmt" },
     },
     formatters = {
         oxfmt = {
@@ -287,7 +289,7 @@ require("themery").setup({
     livePreview = true,
 })
 
-vim.cmd.colorscheme("tokyonight-night")
+-- vim.cmd.colorscheme("tokyonight-night")
 
 require("markview").setup({
     preview = {
