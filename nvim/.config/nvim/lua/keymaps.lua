@@ -1,29 +1,11 @@
-local function pack_clean()
-    local active_plugins = {}
-    local unused_plugins = {}
+local pack = require("pack")
 
-    for _, plugin in ipairs(vim.pack.get()) do
-        active_plugins[plugin.spec.name] = plugin.active
-    end
+-- vim.keymap.set("n", "<leader>pi", pack.install)
+vim.keymap.set("n", "<leader>pu", pack.update)
+vim.keymap.set("n", "<leader>pc", pack.clean)
+-- vim.keymap.set("n", "<leader>ps", pack.sync)
 
-    for _, plugin in ipairs(vim.pack.get()) do
-        if not active_plugins[plugin.spec.name] then
-            table.insert(unused_plugins, plugin.spec.name)
-        end
-    end
-
-    if #unused_plugins == 0 then
-        print("No unused plugins.")
-        return
-    end
-
-    local choice = vim.fn.confirm("Remove unused plugins?", "&Yes\n&No", 2)
-    if choice == 1 then
-        vim.pack.del(unused_plugins)
-    end
-end
-
-vim.keymap.set("n", "<leader>pc", pack_clean)
+-- vim.keymap.set("n", "<leader>pc", pack_clean)
 vim.keymap.set("n", "<leader>e", ":Oil<CR>")
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -41,7 +23,7 @@ vim.keymap.set("v", "mm", '"_dd')
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
-vim.keymap.set("n", "<leader>f", ":Pick files<CR>")
+vim.keymap.set("n", "<leader>ff", ":Pick files<CR>")
 vim.keymap.set("n", "<leader>h", ":Pick help<CR>")
 vim.keymap.set("n", "<leader>g", ":Pick grep_live<CR>")
 vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>")
@@ -74,3 +56,24 @@ vim.keymap.set("i", "<C-k>", function()
 end, { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>ts", ":Themery<CR>")
+
+local function toggle_diagnostics()
+    if vim.diagnostic.is_enabled() then
+        vim.diagnostic.disable()
+        print("Inline VText gone")
+    else
+        vim.diagnostic.enable()
+        print("Inline VText arrives")
+    end
+end
+
+vim.keymap.set("n", "<leader>tt", toggle_diagnostics)
+
+vim.keymap.set("v", "<C-r>", '"hy:%s/<C-r>h//g<left><left>')
+
+local telescope = require("telescope.builtin")
+vim.keymap.set("n", "<leader>fs", telescope.lsp_document_symbols)
+vim.keymap.set("n", "<leader>fw", telescope.lsp_workspace_symbols)
+vim.keymap.set("n", "<leader>fr", telescope.lsp_references)
+vim.keymap.set("n", "<leader>fd", telescope.lsp_definitions)
+

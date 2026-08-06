@@ -23,6 +23,7 @@ local servers = {
     texlab = {},
     marksman = {},
     terraformls = {},
+    ts_ls = {},
 }
 
 local extra_tools = {
@@ -88,16 +89,13 @@ vim.pack.add({
     { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
     { src = "https://github.com/j-hui/fidget.nvim" },
     { src = "https://github.com/stevearc/conform.nvim" },
-    { src = "https://github.com/wsdjeg/picker.nvim" },
     { src = "https://github.com/nvim-mini/mini.nvim" },
     { src = "https://github.com/kawre/neotab.nvim" },
     { src = "https://github.com/nvim-lualine/lualine.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
-    { src = "https://github.com/OXY2DEV/markview.nvim" },
     { src = "https://github.com/akinsho/toggleterm.nvim" },
     { src = "https://github.com/lervag/vimtex" },
-    { src = "https://github.com/olimorris/persisted.nvim" },
-    { src = "https://github.com/toppair/peek.nvim" },
+    -- { src = "https://github.com/olimorris/persisted.nvim" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
     { src = "https://github.com/thimc/gruber-darker.nvim" },
@@ -113,7 +111,15 @@ vim.pack.add({
     { src = "https://github.com/bluz71/vim-moonfly-colors", name = "moonfly" },
     { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
     { src = "https://github.com/zaldih/themery.nvim" },
+    { src = "https://github.com/lewis6991/gitsigns.nvim" },
+    { src = "https://github.com/nvim-lua/plenary.nvim" },
+    { src = "https://github.com/nvim-telescope/telescope.nvim" },
 })
+
+require("telescope").setup({})
+
+require("gitsigns").setup({})
+
 -- Main-branch nvim-treesitter ships queries under `runtime/queries/`,
 -- which isn't on rtp by default. Prepend it so highlights/folds/indents
 -- are visible to `vim.treesitter.start`.
@@ -140,19 +146,6 @@ vim.keymap.set("n", "[c", function()
         return "<Ignore>"
     end
 end, { desc = "Jump to upper context", expr = true })
-
-require("peek").setup({
-    auto_load = true, -- Carga el preview automáticamente al abrir un markdown
-    close_on_bwrite = true, -- Cierra el preview al guardar el archivo
-    syntax = true, -- Habilita resaltado de sintaxis
-    theme = "dark", -- Tema del preview
-    update_on_change = true,
-})
-
-vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-
-vim.keymap.set("n", "<leader>mp", "<cmd>PeekOpen<CR>", { desc = "Abrir Markdown Preview" })
 
 vim.g.vimtex_compiler_method = "latexmk"
 vim.g.vimtex_compiler_latexmk = {
@@ -203,6 +196,8 @@ require("conform").setup({
         tf = { "terraform" },
         yaml = { "oxfmt" },
         yml = { "oxfmt" },
+        json = { "prettierd" },
+        typescript = { "prettierd" },
     },
     formatters = {
         oxfmt = {
@@ -245,18 +240,18 @@ require("mini.ai").setup()
 
 require("lualine").setup()
 
-require("persisted").setup({
-    save_dir = vim.fn.expand("~/.local/share/nvim/sessions/"),
-    autosave = true,
-    autoload = true,
-    on_autoload_no_session = function()
-        vim.notify("No session loaded")
-    end,
-    follow_working_directory = true,
-    allowed_dirs = nil,
-    ignored_dirs = nil,
-    ignored_filetypes = { "gitcommit", "gitrebase" },
-})
+-- require("persisted").setup({
+--     save_dir = vim.fn.expand("~/.local/share/nvim/sessions/"),
+--     autosave = true,
+--     autoload = true,
+--     on_autoload_no_session = function()
+--         vim.notify("No session loaded")
+--     end,
+--     follow_working_directory = true,
+--     allowed_dirs = nil,
+--     ignored_dirs = nil,
+--     ignored_filetypes = { "gitcommit", "gitrebase" },
+-- })
 
 local cmp = require("blink.cmp")
 cmp.build():wait(6000)
@@ -290,9 +285,3 @@ require("themery").setup({
 })
 
 -- vim.cmd.colorscheme("tokyonight-night")
-
-require("markview").setup({
-    preview = {
-        icon_provider = "devicons",
-    },
-})

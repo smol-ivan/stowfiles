@@ -22,3 +22,8 @@ vim.o.mouse = "a"
 vim.o.undofile = true
 
 vim.o.termguicolors = true
+
+vim.diagnostic.config({ signs = false })
+
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
