@@ -4,3 +4,5 @@ export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/.docker/bin:$PATH
+
+eval "$(fnm env --use-on-cd --shell zsh)"
