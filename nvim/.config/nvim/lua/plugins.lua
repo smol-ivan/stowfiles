@@ -114,7 +114,10 @@ vim.pack.add({
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/nvim-telescope/telescope.nvim" },
+    { src = "https://github.com/folke/trouble.nvim" },
 })
+
+require("trouble").setup({})
 
 require("telescope").setup({})
 
@@ -194,8 +197,7 @@ require("conform").setup({
         dockerfile = { "dockerfmt" },
         terraform = { "terraform" },
         tf = { "terraform" },
-        yaml = { "oxfmt" },
-        yml = { "oxfmt" },
+        yaml = { "prettierd" },
         json = { "prettierd" },
         typescript = { "prettierd" },
     },

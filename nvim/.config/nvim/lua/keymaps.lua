@@ -77,3 +77,7 @@ vim.keymap.set("n", "<leader>fw", telescope.lsp_workspace_symbols)
 vim.keymap.set("n", "<leader>fr", telescope.lsp_references)
 vim.keymap.set("n", "<leader>fd", telescope.lsp_definitions)
 
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
+vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer Diagnostics" })
+vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "Symbols (Trouble)" })
+vim.keymap.set("n", "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", { desc = "LSP Definitions" })
