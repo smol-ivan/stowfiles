@@ -1,0 +1,67 @@
+{
+  "Wiki link": {
+    "prefix": "wl",
+    "body": "[[${1:nota}|${2:texto}]]",
+    "description": "Obsidian wiki link"
+  },
+  "Callout NOTE": {
+    "prefix": "cnote",
+    "body": "> [!NOTE]\n> ${1:contenido}",
+    "description": "Obsidian callout note"
+  },
+  "Callout IMPORTANT": {
+    "prefix": "cimp",
+    "body": "> [!IMPORTANT]\n> ${1:contenido}",
+    "description": "Obsidian callout important"
+  },
+  "Callout WARNING": {
+    "prefix": "cwarn",
+    "body": "> [!WARNING]\n> ${1:contenido}",
+    "description": "Obsidian callout warning"
+  },
+  "Callout TIP": {
+    "prefix": "ctip",
+    "body": "> [!TIP]\n> ${1:contenido}",
+    "description": "Obsidian callout tip"
+  },
+  "Callout CAUTION": {
+    "prefix": "ccau",
+    "body": "> [!CAUTION]\n> ${1:contenido}",
+    "description": "Obsidian callout caution"
+  },
+  "Checkbox": {
+    "prefix": "cb",
+    "body": "- [ ] ${1:tarea}",
+    "description": "Checkbox de tarea"
+  },
+  "Tabla MD": {
+    "prefix": "tabla",
+    "body": "| ${1:Col1} | ${2:Col2} | ${3:Col3} |\n|-----------|-----------|----------|\n| ${4} | ${5} | ${6} |",
+    "description": "Tabla markdown basica"
+  },
+  "Frontmatter servicio": {
+    "prefix": "fms",
+    "body": "---\ntags: [servicio, aws, ${1:categoria}]\nservicio: \"${2:Nombre}\"\ncategoria: ${1:categoria}\nestado: borrador\nfecha_creacion: ${3:2026-01-01}\n---\n\n# ${2:Nombre}\n\n$0",
+    "description": "Frontmatter de nota de servicio AWS"
+  },
+  "Frontmatter pregunta": {
+    "prefix": "fmq",
+    "body": "---\ntags: [examen, pregunta, ${1:dominio}]\ndominio: \"${1:dominio}\"\ndificultad: ${2:media}\nrespondida: false\nfecha: ${3:2026-01-01}\n---\n\n# ❓ ${4:Titulo}\n\n$0",
+    "description": "Frontmatter de pregunta de examen"
+  },
+  "MCQ block": {
+    "prefix": "mcq",
+    "body": "## Pregunta\n\n> ${1:Enunciado}\n\n**A)** ${2}\n**B)** ${3}\n**C)** ${4}\n**D)** ${5}\n\n---\n\n## ✅ Respuesta correcta\n\n**Opción:** ${6}\n\n## 🧠 Explicación\n\n${7}",
+    "description": "Bloque MCQ completo"
+  },
+  "Mermaid graph": {
+    "prefix": "mermaid",
+    "body": "```mermaid\ngraph TD\n    ${1:A}[\"${2:Inicio}\"] --> ${3:B}[\"${4:Fin}\"]\n```",
+    "description": "Diagrama Mermaid basico"
+  },
+  "Tabla comparativa servicio": {
+    "prefix": "tcomp",
+    "body": "| Situación | ¿Por qué ${1:Servicio}? |\n|-----------|------------------------|\n| ${2} | ${3} |",
+    "description": "Tabla de cuando usar el servicio"
+  }
+}

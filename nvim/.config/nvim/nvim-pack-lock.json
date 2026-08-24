@@ -4,6 +4,10 @@
       "rev": "bd62d0889dabd9419e35996e3ac820e8e1e7665c",
       "src": "https://github.com/saghen/blink.cmp"
     },
+    "blink.compat": {
+      "rev": "1454f14a8d855a578ceeba77c62538fa1459a67c",
+      "src": "https://github.com/saghen/blink.compat"
+    },
     "blink.lib": {
       "rev": "c8fdc12c8a2fab6cf786dd7141a283f8079f902b",
       "src": "https://github.com/saghen/blink.lib"
@@ -91,6 +95,10 @@
     "nvim-web-devicons": {
       "rev": "2ae6958df7ced50baac5035cec0c15799eedfbf7",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
+    },
+    "obsidian.nvim": {
+      "rev": "07f94ef04a417555ee56a5895ddeb740f2de0033",
+      "src": "https://github.com/obsidian-nvim/obsidian.nvim"
     },
     "oil.nvim": {
       "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",

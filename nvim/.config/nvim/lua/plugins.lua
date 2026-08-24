@@ -115,6 +115,27 @@ vim.pack.add({
     { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/nvim-telescope/telescope.nvim" },
     { src = "https://github.com/folke/trouble.nvim" },
+    { src = "https://github.com/obsidian-nvim/obsidian.nvim" },
+    { src = "https://github.com/saghen/blink.compat" },
+})
+
+require("obsidian").setup({
+    picker = {
+        name = "mini.pick",
+    },
+    legacy_commands = false,
+    workspaces = {
+        {
+            name = "career - Dev",
+            path = "/home/cherry/bone/aws/developer/notes/",
+        },
+    },
+    templates = {
+        folder = "_templates",
+        date_format = "%Y-%m-%d",
+        time_format = "%H:%M",
+    },
+    preferred_link_style = "markdown",
 })
 
 require("trouble").setup({})
@@ -199,6 +220,7 @@ require("conform").setup({
         tf = { "terraform" },
         yaml = { "prettierd" },
         json = { "prettierd" },
+        jsonc = { "oxfmt", "prettierd", stop_after_first = true },
         typescript = { "prettierd" },
     },
     formatters = {
@@ -256,10 +278,48 @@ require("lualine").setup()
 -- })
 
 local cmp = require("blink.cmp")
-cmp.build():wait(6000)
+cmp.build():pwait()
 cmp.setup({
-    signature = { enabled = true },
+    signature = {
+        enabled = true,
+    },
+    completion = {
+        documentation = {
+            auto_show = false,
+        },
+    },
+    sources = {
+        default = { "lsp", "path", "snippets", "buffer", "obsidian", "obsidian_new", "obsidian_tags" },
+        providers = {
+            obsidian = {
+                name = "obsidian",
+                module = "blink.compat.source",
+                opts = { name = "obsidian" },
+            },
+            obsidian_new = {
+                name = "obsidian_new",
+                module = "blink.compat.source",
+                opts = { name = "obsidian_new" },
+            },
+            obsidian_tags = {
+                name = "obsidian_tags",
+                module = "blink.compat.source",
+                opts = { name = "obsidian_tags" },
+            },
+        },
+        snippets = {
+            opts = {
+                friendly_snippets = false, -- sin friendly-snippets
+                search_paths = { vim.fn.stdpath("config") .. "/snippets" },
+                global_snippets = { "global" }, -- archivos globales
+                extended_filetypes = {},
+                ignored_filetypes = {},
+            },
+        },
+    },
 })
+
+require("blink.compat").setup({})
 
 require("themery").setup({
     themes = {

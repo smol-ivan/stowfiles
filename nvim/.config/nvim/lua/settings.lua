@@ -22,6 +22,7 @@ vim.o.mouse = "a"
 vim.o.undofile = true
 
 vim.o.termguicolors = true
+vim.opt_local.conceallevel = 1
 
 vim.diagnostic.config({ signs = false })
 
