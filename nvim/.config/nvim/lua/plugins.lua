@@ -291,6 +291,15 @@ cmp.setup({
     sources = {
         default = { "lsp", "path", "snippets", "buffer", "obsidian", "obsidian_new", "obsidian_tags" },
         providers = {
+            snippets = {
+                opts = {
+                    friendly_snippets = false, -- sin friendly-snippets
+                    search_paths = { vim.fn.stdpath("config") .. "/snippets" },
+                    global_snippets = { "global" }, -- archivos globales
+                    extended_filetypes = {},
+                    ignored_filetypes = {},
+                },
+            },
             obsidian = {
                 name = "obsidian",
                 module = "blink.compat.source",
@@ -305,15 +314,6 @@ cmp.setup({
                 name = "obsidian_tags",
                 module = "blink.compat.source",
                 opts = { name = "obsidian_tags" },
-            },
-        },
-        snippets = {
-            opts = {
-                friendly_snippets = false, -- sin friendly-snippets
-                search_paths = { vim.fn.stdpath("config") .. "/snippets" },
-                global_snippets = { "global" }, -- archivos globales
-                extended_filetypes = {},
-                ignored_filetypes = {},
             },
         },
     },
