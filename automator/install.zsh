@@ -21,7 +21,7 @@ install_maple_font() {
 
     if [[ -d "$fonts_dir" ]];then
         print "Maple font esta instalado!"
-        return 1
+        return 0
     fi
     print "Instalando Maple Font..."
 
@@ -60,7 +60,7 @@ install_setup() {
 
     if command -v tmux >/dev/null; then
         [[ ! -d ~/.tmux/plugins/tpm ]] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-        tmux new -d && ~/.tmux/plugins/tpm/bin/install_plugins && tmux kill-server || true
+        { tmux new -d && ~/.tmux/plugins/tpm/bin/install_plugins && tmux kill-server; } || true
     fi
 }
 
