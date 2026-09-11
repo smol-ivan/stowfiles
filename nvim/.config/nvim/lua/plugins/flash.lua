@@ -1,5 +1,8 @@
 vim.pack.add({
-    src = "folke/flash.nvim",
+    { src = "https://github.com/folke/flash.nvim" },
+})
+
+require("flash").setup({
     opts = {
         jump = { nohlsearch = true },
         prompt = {
