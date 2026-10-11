@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+TARGET_DIR="${1:-$PWD}"
+
+echo "Revisando proyectos en: $TARGET_DIR"
+echo "--------------------------------------------------"
+
+for dir in "$TARGET_DIR"/*/; do
+  # Verificar que exista y sea un repositorio Git
+  if [ -d "$dir/.git" ]; then
+    folder_name=$(basename "$dir")
+    
+    # El paréntesis abre un subshell: al salir del paréntesis regresas al directorio original automáticamente
+    (
+      cd "$dir" || exit
+      git fetch -q 2>/dev/null
+
+      AHEAD=$(git rev-list --count @{u}..HEAD 2>/dev/null || echo 0)
+      BEHIND=$(git rev-list --count HEAD..@{u} 2>/dev/null || echo 0)
+      # Detecta tanto cambios staged como unstaged
+      DIRTY=$(git status --porcelain 2>/dev/null)
+
+      if [ "$AHEAD" -gt 0 ] || [ "$BEHIND" -gt 0 ] || [ -n "$DIRTY" ]; then
+        echo "📂 [$folder_name]"
+        [ "$AHEAD" -gt 0 ]  && echo "   ⬆️  Commits sin subir: $AHEAD"
+        [ "$BEHIND" -gt 0 ] && echo "   ⬇️  Falta hacer pull:  $BEHIND"
+        [ -n "$DIRTY" ]     && echo "   ⚠️  Cambios pendientes (staged/unstaged)"
+        echo ""
+      fi
+    )
+  fi
+done
+
+echo "--------------------------------------------------"
+echo "Chequeo finalizado."
