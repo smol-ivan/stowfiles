@@ -30,6 +30,8 @@
     enable = true;
     xwayland.enable = true;
   };
+  
+  programs.zsh.enable = true;
 
   users.users.chattini = {
     isNormalUser = true;

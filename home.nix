@@ -11,15 +11,11 @@
   home.stateVersion = "26.05";
 
   programs.zsh = {
-    enable = true;
-    shellAliases = {
-      smol = "echo im using nixos";
-    };
     profileExtra = ''
-      	    if [ "$XDG_VTNR" = 1 ]; then
-      		exec hyprland
-      	    fi
-      	'';
+        if [ "$(tty)" = "/dev/tty1" ]; then
+          exec Hyprland
+        fi
+    '';
   };
 
   home.file.".config/alacritty".source = ./dotfiles/alacritty;
