@@ -21,12 +21,12 @@
       	'';
   };
 
-  home.file.".config/alacritty".source = ./config/alacritty;
-  home.file.".config/hypr".source = ./config/hypr;
-  home.file.".zshrc".source = ./config/zshell/.zshrc;
-  home.file.".zsh".source = ./config/zshell/.zsh;
+  home.file.".config/alacritty".source = ./dotfiles/alacritty;
+  home.file.".config/hypr".source = ./dotfiles/hypr;
+  home.file.".zshrc".source = ./dotfiles/zshell/.zshrc;
+  home.file.".zsh".source = ./dotfiles/zshell/.zsh;
 
-  progams.ssh = {
+  programs.ssh = {
     enable = true;
     matchBlocks = {
       "github.com" = {
