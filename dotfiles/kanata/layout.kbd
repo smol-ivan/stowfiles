@@ -17,24 +17,24 @@
 (defalias
   capsw       (tap-hold 200 200 esc lctl)
   tap_symbols (tap-hold-press 140 180 spc (layer-while-held symbols))
-;;  tap_navnum  (tap-hold-press 140 180 menu (layer-while-held navnum))
+;; tap_navnum  (tap-hold-press 140 180 menu (layer-while-held navnum))
 
   ;; Ajustado para kb_layout=us + kb_variant=colemak_dh_wide (Hyprland/XKB)
-  bang S-1   ;; !
-  amp  S-8   ;; &
-  mul  S-9   ;; *
-  lp   S-0   ;; (
-  rp   S--   ;; )
-  lb   y     ;; [
-  rb   h     ;; ]
-  lc   S-y   ;; {
-  rc   S-h   ;; }
-  lt   S-,   ;; <
-  gt   S-.   ;; >
-  eq   7     ;; =
-  add  S-7   ;; +
-  sub  =     ;; -
-  bsl  S-\   ;; |
+  bang S-1  ;; !
+  amp  S-8  ;; &
+  mul  S-9  ;; *
+  lp   S-0  ;; (
+  rp   S--  ;; )
+  lb   y    ;; [
+  rb   h    ;; ]
+  lc   S-y  ;; {
+  rc   S-h  ;; }
+  lt   S-,  ;; <
+  gt   S-.  ;; >
+  eq   7    ;; =
+  add  S-7  ;; +
+  sub  =    ;; -
+  bsl  S-\  ;; |
   sym_exit _
 )
 
@@ -47,15 +47,23 @@
   lctl    lmet lalt           @tap_symbols    ralt rmet _ rctl
 )
 
-(include "ansi-symbols-layer.kbd")
+;; Shared ANSI symbols layer shape for homerow-focused symbols
+(deflayer symbols
+  _        _    _    _    _    _    _    _    _    _    _    _    _
+  _        _    _    _    _    _    _    _    _    _    _    _    _    _
+  _        _    _    _    @bang _   _    _    @bsl _    _    _    _    _
+  @capsw  @amp @lc  @lb  @lp   @lt  _    @gt  @rp  @rb  @rc  @mul _
+  _        _    _    @add _    _    _    _    @eq  _    _    _
+  _        _    _               _               _    _    _    @sym_exit
+)
 
 ;; navnum: izquierda = numpad, derecha = flechas/navegacion
 ;; activar: mantener Menu (tap normal = Menu)
 ;;(deflayer navnum
-;;  _       _      _      _      _      _      _    _     _    _    _     _    _
-;;  _       _      _      _      _      _      _    _     _    _    _     _    _    _
-;;  _       kp7    kp8    kp9    kpsls  kpast  _    home  up   end  pgup  _    _    _
-;;  _       kp4    kp5    kp6    kpplus kpminus _   left  down rght pgdn  _    _
-;;  _          kp1    kp2    kp3    kp0    _    _    _    _    _    _    _
-;;  _       _      _                  _                _    _    _    _
+;;  _        _      _      _      _      _      _    _     _    _    _     _    _
+;;  _        _      _      _      _      _      _    _     _    _    _     _    _    _
+;;  _        kp7    kp8    kp9    kpsls  kpast  _    home  up   end  pgup  _    _    _
+;;  _        kp4    kp5    kp6    kpplus kpminus _   left  down rght pgdn  _    _
+;;  _           kp1    kp2    kp3    kp0    _    _    _     _    _    _     _
+;;  _        _      _                  _                 _    _    _     _
 ;;)

@@ -38,7 +38,7 @@
     keyboards = {
       "myKeyboard" = {
         devices = [ "/dev/input/by-path/pci-0000:09:00.4-usbv2-0:1:1.0-event-kbd" ];
-        configFile = "./dotfiles/kanata/linux-symbols.kbd";
+        configFile = ./dotfiles/kanata/layout.kbd;
       };
 
     };
