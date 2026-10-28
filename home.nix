@@ -7,6 +7,7 @@ let
     alacritty = "alacritty";
     hypr = "hypr";
     noctalia = "noctalia";
+    kanata = "kanata";
   };
 in
 {
@@ -39,7 +40,7 @@ in
     enable = true;
     settings.user = {
       name = "Ivan Gordillo";
-      eamil = "gordillosolis@icloud.com";
+      email = "gordillosolis@icloud.com";
     };
   };
 

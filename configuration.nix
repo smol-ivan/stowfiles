@@ -31,6 +31,19 @@
     pulse.enable = true;
   };
 
+  hardware.uinput.enable = true;
+
+  services.kanata = {
+    enable = true;
+    keyboards = {
+      "myKeyboard" = {
+        devices = [ "/dev/input/by-path/pci-0000:09:00.4-usbv2-0:1:1.0-event-kbd" ];
+        configFile = "./dotfiles/kanata/linux-symbols.kbd";
+      };
+
+    };
+  };
+
   services.displayManager.noctalia-greeter = {
     enable = true;
     passwordlessSyncUsers = [ "chattini" ];
@@ -58,7 +71,11 @@
 
   users.users.chattini = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"
+      "input"
+      "uinput"
+    ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       tree
