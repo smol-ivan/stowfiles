@@ -19,21 +19,24 @@
         }
         {
           key = "J";
-          mode = "n";
+          mode = "v";
           silent = true;
-          action = ":m >+1<CR>gv=gv";
+          action = ":m '>+1<CR>gv=gv";
         }
         {
           key = "K";
-          mode = "n";
+          mode = "v";
           silent = true;
-          action = ":m <-2<CR>gv=gv";
+          action = ":m '<-2<CR>gv=gv";
         }
         {
           key = "<leader>y";
-          mode = "v";
+          mode = [
+            "n"
+            "v"
+          ];
           silent = true;
-          action = "'+y<CR>";
+          action = "\"+y<CR>";
         }
         {
           key = "mm";
@@ -59,12 +62,36 @@
           silent = true;
           action = ":Pick buffers<CR>";
         }
+        {
+          key = "<leader>tt";
+          mode = "n";
+          silent = true;
+          action = "<cmd>lua if vim.diagnostic.is_enabled() then vim.diagnostic.disable() else vim.diagnostic.enable() end<CR>";
+        }
+        {
+          key = "<leader>xx";
+          mode = "n";
+          silent = true;
+          action = "<cmd>Trouble diagnostics toggle<cr>";
+        }
+        {
+          key = "<leader>cs";
+          mode = "n";
+          silent = true;
+          action = "<cmd>Trouble symbols toggle focus=false<cr>";
+        }
       ];
       vim.viAlias = false;
       vim.vimAlias = true;
       vim.lsp = {
         enable = true;
         formatOnSave = true;
+      };
+      vim.diagnostics.enable = false;
+      vim.diagnostics.config = {
+        virtual_text = false;
+        signs = false;
+        underline = false;
       };
 
       vim.globals.mapleader = " ";
@@ -100,7 +127,12 @@
         name = "gruber-darker";
       };
 
+      vim.lsp.trouble.enable = true;
+      vim.utility.motion.flash-nvim.enable = true;
+
       vim.autocomplete.blink-cmp.enable = true;
+      vim.autocomplete.blink-cmp.setupOpts.cmdline.keymap.preset = "default";
+      vim.autocomplete.blink-cmp.setupOpts.keymap.preset = "default";
       vim.binds.cheatsheet.enable = true;
 
       vim.formatter = {

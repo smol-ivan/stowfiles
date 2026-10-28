@@ -1,34 +1,50 @@
 { config, pkgs, ... }:
 
+let
+  dotfiles = "${config.home.homeDirectory}/bone/nixosfiles/dotfiles";
+  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+  configs = {
+    alacritty = "alacritty";
+    hypr = "hypr";
+    noctalia = "noctalia";
+  };
+in
 {
 
   imports = [
     ./nvimnvf.nix
+    ./zsh.nix
+    ./tmux.nix
   ];
 
   home.username = "chattini";
   home.homeDirectory = "/home/chattini";
   home.stateVersion = "26.05";
 
-  programs.zsh = {
-    profileExtra = ''
-        if [ "$(tty)" = "/dev/tty1" ]; then
-          exec Hyprland
-        fi
-    '';
+  xdg.configFile = builtins.mapAttrs (name: subpath: {
+    source = create_symlink "${dotfiles}/${subpath}";
+    recursive = true;
+  }) configs;
+
+  home.pointerCursor = {
+    enable = true;
+    gtk.enable = true;
+    # x11.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
   };
 
-  home.file.".config/alacritty".source = ./dotfiles/alacritty;
-  home.file.".config/hypr".source = ./dotfiles/hypr;
-
-  programs.ssh = {
+  programs.git = {
     enable = true;
-    matchBlocks = {
-      "github.com" = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = "~/.ssh/id_ed25519";
-      };
+    settings.user = {
+      name = "Ivan Gordillo";
+      eamil = "gordillosolis@icloud.com";
     };
   };
+
+  home.packages = with pkgs; [
+    tmux-sessionizer
+    lazygit
+  ];
 }

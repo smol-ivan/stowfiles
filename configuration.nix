@@ -10,9 +10,16 @@
     ./hardware-configuration.nix
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 2;
+  boot.kernelParams = [
+    "nvidia.NVreg_TemporaryFilePath=/var/tmp"
+    "nvidia_drm.modeset=1"
+    "nvidia_drm.fbdev=1"
+  ];
 
   networking.hostName = "nixos-smol"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -24,13 +31,29 @@
     pulse.enable = true;
   };
 
-  services.getty.autologinUser = "chattini";
+  services.displayManager.noctalia-greeter = {
+    enable = true;
+    passwordlessSyncUsers = [ "chattini" ];
+    settings = {
+      cursor.size = 24;
+      keyboard.layout = "us";
+      keyboard.variant = "colemak_dh_wide";
+    };
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+    };
+  };
+
+  services.hypridle.enable = true;
+  programs.hyprlock.enable = true;
+  security.pam.services.hyprlock = { };
 
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
-  
+
   programs.zsh.enable = true;
 
   users.users.chattini = {
@@ -44,6 +67,11 @@
 
   programs.firefox.enable = true;
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
     vim
     wget
@@ -51,16 +79,43 @@
     noctalia
     neovim
     git
+    wl-clipboard
+    hypridle
+    hyprlock
+    fastfetch
   ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.iosevka
+    maple-mono.NF
   ];
 
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
+
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "nvidia-x11"
+      "nvidia-settings"
+      "nvidia-persitenced"
+      # "steam"
+      # "steam-unwrapped"
+    ];
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;
+  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.powerManagement.enable = true;
+  hardware.nvidia.powerManagement.kernelSuspendNotifier = true;
+
+  # programs.steam = {
+  #   enable = true;
+  # };
+
+  # hardware.graphics.enable32Bit = true;
 
   system.stateVersion = "26.05";
 
