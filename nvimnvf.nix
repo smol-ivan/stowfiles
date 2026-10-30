@@ -6,12 +6,6 @@
     settings = {
       vim.keymaps = [
         {
-          key = "<leader>e";
-          mode = "n";
-          silent = true;
-          action = ":Oil<CR>";
-        }
-        {
           key = "<Esc>";
           mode = "n";
           silent = true;
@@ -44,24 +38,87 @@
           silent = true;
           action = "'_dd";
         }
+        # --- Atajos de Telescope (Símbolos, Definiciones, Búsqueda) ---
         {
-          key = "<leader>h";
+          key = "<leader>f";
           mode = "n";
           silent = true;
-          action = ":Pick help<CR>";
+          action = "<cmd>Telescope find_files<CR>";
         }
         {
           key = "<leader>g";
           mode = "n";
           silent = true;
-          action = ":Pick grep_live<CR>";
+          action = "<cmd>Telescope live_grep<CR>";
         }
         {
           key = "<leader>b";
           mode = "n";
           silent = true;
-          action = ":Pick buffers<CR>";
+          action = "<cmd>Telescope buffers<CR>";
         }
+        {
+          key = "<leader>h";
+          mode = "n";
+          silent = true;
+          action = "<cmd>Telescope help_tags<CR>";
+        }
+
+        # --- Navegación LSP con Telescope ---
+        {
+          key = "gd";
+          mode = "n";
+          silent = true;
+          action = "<cmd>Telescope lsp_definitions<CR>";
+        }
+        {
+          key = "gr";
+          mode = "n";
+          silent = true;
+          action = "<cmd>Telescope lsp_references<CR>";
+        }
+        {
+          key = "gi";
+          mode = "n";
+          silent = true;
+          action = "<cmd>Telescope lsp_implementations<CR>";
+        }
+        {
+          key = "<leader>ws";
+          mode = "n";
+          silent = true;
+          action = "<cmd>Telescope lsp_workspace_symbols<CR>";
+        }
+        {
+          key = "<leader>ds";
+          mode = "n";
+          silent = true;
+          action = "<cmd>Telescope lsp_document_symbols<CR>";
+        }
+        # {
+        #   key = "<leader>h";
+        #   mode = "n";
+        #   silent = true;
+        #   action = ":Pick help<CR>";
+        # }
+        # {
+        #   key = "<leader>g";
+        #   mode = "n";
+        #   silent = true;
+        #   action = ":Pick grep_live<CR>";
+        # }
+        # {
+        #   key = "<leader>f";
+        #   mode = "n";
+        #   silent = true;
+        #   action = ":Pick files<CR>";
+        # }
+        # {
+        #   key = "<leader>b";
+        #   mode = "n";
+        #   silent = true;
+        #   action = ":Pick buffers<CR>";
+        # }
         {
           key = "<leader>tt";
           mode = "n";
@@ -81,8 +138,13 @@
           action = "<cmd>Trouble symbols toggle focus=false<cr>";
         }
       ];
+
       vim.viAlias = false;
       vim.vimAlias = true;
+
+      vim.binds.whichKey.enable = true;
+
+      vim.telescope.enable = true;
       vim.lsp = {
         enable = true;
         formatOnSave = true;
@@ -114,7 +176,7 @@
         docker.enable = true;
       };
       vim.mini = {
-        pick.enable = true;
+        pick.enable = false;
         pairs.enable = true;
         surround.enable = true;
         ai.enable = true;
@@ -134,6 +196,16 @@
       vim.autocomplete.blink-cmp.setupOpts.cmdline.keymap.preset = "default";
       vim.autocomplete.blink-cmp.setupOpts.keymap.preset = "default";
       vim.binds.cheatsheet.enable = true;
+
+      vim.languages.tex = {
+        enable = true;
+        lsp.enable = true; # Activa texlab (LSP para LaTeX)
+        treesitter.enable = true; # Highlighting avanzado
+      };
+
+      vim.visuals.fidget-nvim = {
+        enable = true;
+      };
 
       vim.formatter = {
         conform-nvim.enable = true;

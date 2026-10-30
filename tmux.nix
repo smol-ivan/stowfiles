@@ -43,9 +43,8 @@
       set-option -g renumber-windows on
 
       # Keybindings personalizados
-      bind r source-file ~/.tmux.conf \; display-message "config reloaded"
       bind-key -r z run-shell "tmux new-window 'nohup zathura $(fzf)'"
-      bind-key -r f run-shell "tmux neww tmux_sessionizer"
+      bind-key -r f run-shell "tmux neww tms" 
     '';
   };
 }

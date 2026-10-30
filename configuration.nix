@@ -26,10 +26,55 @@
 
   time.timeZone = "America/Mexico_City";
 
+  programs.obs-studio = {
+    enable = true;
+
+    package = (
+      pkgs.obs-studio.override {
+        cudaSupport = true;
+      }
+    );
+
+    plugins = with pkgs.obs-studio-plugins; [
+      wlrobs
+      #   obs-backgroundremoval
+      #   obs-pipewire-audio-capture
+      #   obs-vaapi #optional AMD hardware acceleration
+      #   obs-gstreamer
+      #   obs-vkcapture
+    ];
+  };
+
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+    alsa.enable = true;
+    wireplumber.enable = true;
   };
+
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = with pkgs; [
+  #     xdg-desktop-portal-hyprland
+  #   ];
+  # };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      # kdePackages.xdg-desktop-portal-kde
+      xdg-desktop-portal-hyprland
+    ];
+    xdgOpenUsePortal = true;
+  };
+
+  virtualisation.docker = {
+    enable = true;
+    autoPrune.enable = true;
+  };
+
+  programs.nix-ld.enable = true;
 
   hardware.uinput.enable = true;
 
@@ -75,6 +120,7 @@
       "wheel"
       "input"
       "uinput"
+      "docker"
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [
@@ -118,6 +164,8 @@
       "nvidia-x11"
       "nvidia-settings"
       "nvidia-persitenced"
+      "github-copilot-cli"
+      "antigravity-cli"
       # "steam"
       # "steam-unwrapped"
     ];
@@ -127,12 +175,6 @@
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.powerManagement.enable = true;
   hardware.nvidia.powerManagement.kernelSuspendNotifier = true;
-
-  # programs.steam = {
-  #   enable = true;
-  # };
-
-  # hardware.graphics.enable32Bit = true;
 
   system.stateVersion = "26.05";
 

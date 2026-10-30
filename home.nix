@@ -44,8 +44,13 @@ in
     };
   };
 
+  programs.antigravity-cli.enable = true;
+  programs.github-copilot-cli.enable = true;
+
   home.packages = with pkgs; [
     tmux-sessionizer
     lazygit
+    pavucontrol
+    zathura
   ];
 }
