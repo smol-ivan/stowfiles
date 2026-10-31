@@ -6,6 +6,12 @@
     settings = {
       vim.keymaps = [
         {
+          key = "<leader>e";
+          mode = "n";
+          silent = true;
+          action = ":Oil<CR>";
+        }
+        {
           key = "<Esc>";
           mode = "n";
           silent = true;
@@ -95,30 +101,6 @@
           silent = true;
           action = "<cmd>Telescope lsp_document_symbols<CR>";
         }
-        # {
-        #   key = "<leader>h";
-        #   mode = "n";
-        #   silent = true;
-        #   action = ":Pick help<CR>";
-        # }
-        # {
-        #   key = "<leader>g";
-        #   mode = "n";
-        #   silent = true;
-        #   action = ":Pick grep_live<CR>";
-        # }
-        # {
-        #   key = "<leader>f";
-        #   mode = "n";
-        #   silent = true;
-        #   action = ":Pick files<CR>";
-        # }
-        # {
-        #   key = "<leader>b";
-        #   mode = "n";
-        #   silent = true;
-        #   action = ":Pick buffers<CR>";
-        # }
         {
           key = "<leader>tt";
           mode = "n";
@@ -192,16 +174,32 @@
       vim.lsp.trouble.enable = true;
       vim.utility.motion.flash-nvim.enable = true;
 
-      vim.autocomplete.blink-cmp.enable = true;
-      vim.autocomplete.blink-cmp.setupOpts.cmdline.keymap.preset = "default";
-      vim.autocomplete.blink-cmp.setupOpts.keymap.preset = "default";
-      vim.binds.cheatsheet.enable = true;
-
-      vim.languages.tex = {
+      vim.autocomplete.blink-cmp = {
         enable = true;
-        lsp.enable = true; # Activa texlab (LSP para LaTeX)
-        treesitter.enable = true; # Highlighting avanzado
+        friendly-snippets.enable = false;
+        setupOpts = {
+          completion = {
+            documentation = {
+              # Desactiva la ventana flotante de documentación automática al escribir
+              auto_show = false;
+              # Mantiene la documentación oculta tras retrasos
+              auto_show_delay_ms = 500;
+            };
+          };
+          keymap = {
+            # Usa el preset predeterminado
+            preset = "default";
+            # Mapea un atajo para alternar (toggle) la ventana de documentación en el menú de autocompletado
+            "<C-k>" = [
+              "show_documentation"
+              "hide_documentation"
+              "fallback"
+            ];
+          };
+        };
       };
+
+      vim.binds.cheatsheet.enable = true;
 
       vim.visuals.fidget-nvim = {
         enable = true;
@@ -212,6 +210,7 @@
       };
       vim.utility.oil-nvim = {
         enable = true;
+        gitStatus.enable = true;
         setupOpts = {
           columns = [
             "permissions"

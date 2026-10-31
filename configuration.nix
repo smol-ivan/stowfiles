@@ -36,12 +36,7 @@
     );
 
     plugins = with pkgs.obs-studio-plugins; [
-      wlrobs
-      #   obs-backgroundremoval
-      #   obs-pipewire-audio-capture
-      #   obs-vaapi #optional AMD hardware acceleration
-      #   obs-gstreamer
-      #   obs-vkcapture
+      obs-pipewire-audio-capture
     ];
   };
 
@@ -52,21 +47,12 @@
     wireplumber.enable = true;
   };
 
-  # xdg.portal = {
-  #   enable = true;
-  #   extraPortals = with pkgs; [
-  #     xdg-desktop-portal-hyprland
-  #   ];
-  # };
-
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      # kdePackages.xdg-desktop-portal-kde
       xdg-desktop-portal-hyprland
     ];
-    xdgOpenUsePortal = true;
+    config.common.default = [ "hyprland" ];
   };
 
   virtualisation.docker = {
