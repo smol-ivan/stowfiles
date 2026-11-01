@@ -4,6 +4,9 @@
   # Arquitectura y plataforma
   nixpkgs.hostPlatform = "aarch64-darwin";
 
+  # Desactivar gestión de nix-daemon por nix-darwin para convivir con Determinate Nix
+  nix.enable = false;
+
   # Usuario principal para las configuraciones de sistema de macOS
   system.primaryUser = "cherry";
 
