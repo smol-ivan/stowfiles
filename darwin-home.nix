@@ -42,8 +42,6 @@ in
     eza
     direnv
     fzf
-    just
-    uv
     tree
     yt-dlp
     ffmpeg
