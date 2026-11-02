@@ -49,10 +49,6 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
-    ];
-    config.common.default = [ "hyprland" ];
   };
 
   virtualisation.docker = {
@@ -82,6 +78,9 @@
       cursor.size = 24;
       keyboard.layout = "us";
       keyboard.variant = "colemak_dh_wide";
+      session = {
+        default = "Hyprland (uwsm-managed)";
+      };
     };
     cursorTheme = {
       package = pkgs.bibata-cursors;
@@ -95,6 +94,7 @@
 
   programs.hyprland = {
     enable = true;
+    withUWSM = true;
     xwayland.enable = true;
   };
 
@@ -125,12 +125,9 @@
     vim
     wget
     alacritty
-    noctalia
     neovim
     git
     wl-clipboard
-    hypridle
-    hyprlock
     fastfetch
   ];
 
@@ -152,9 +149,8 @@
       "nvidia-persitenced"
       "github-copilot-cli"
       "antigravity-cli"
-      # "steam"
-      # "steam-unwrapped"
     ];
+
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = true;

@@ -22,20 +22,6 @@ local fileManager = "dolphin"
 local menu        = "hyprlauncher"
 local noctCall    = "noctalia msg "
 
-hl.on("hyprland.start", function()
-    hl.exec_cmd("dbus-update-activation-environment --systemd --all")
-    hl.exec_cmd("noctalia")
-    hl.exec_cmd("hypridle")
-end)
-
-hl.env("XCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("LIBVA_DRIVER_NAME", "nvidia")
-hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
-hl.env("XDG_SESSION_TYPE", "wayland")
-hl.env("GDM_BACKEND", "nvidia_drm")
-hl.env("NVD_BACKEND", "direct")
-
 hl.config({
     general = {
         gaps_in          = 5,

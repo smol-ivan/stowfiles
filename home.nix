@@ -22,10 +22,25 @@ in
   home.homeDirectory = "/home/chattini";
   home.stateVersion = "26.05";
 
-  xdg.configFile = builtins.mapAttrs (name: subpath: {
-    source = create_symlink "${dotfiles}/${subpath}";
-    recursive = true;
-  }) configs;
+  xdg.configFile =
+    (builtins.mapAttrs (name: subpath: {
+      source = create_symlink "${dotfiles}/${subpath}";
+      recursive = true;
+    }) configs)
+    // {
+      "uwsm/env".text = ''
+        export XCURSOR_SIZE=24
+        export HYPRCURSOR_SIZE=24
+        export LIBVA_DRIVER_NAME=nvidia
+        export __GLX_VENDOR_LIBRARY_NAME=nvidia
+        export NVD_BACKEND=direct
+      '';
+    };
+
+  programs.noctalia = {
+    enable = true;
+    systemd.enable = true;
+  };
 
   home.pointerCursor = {
     enable = true;
@@ -53,4 +68,5 @@ in
     pavucontrol
     zathura
   ];
+
 }
