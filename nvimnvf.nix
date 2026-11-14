@@ -143,6 +143,7 @@
       vim.opts.shiftwidth = 4;
 
       vim.languages = {
+        typst.enable = true;
         python.enable = true;
         rust.enable = true;
         clang.enable = true;
@@ -168,7 +169,8 @@
       vim.statusline.lualine.enable = true;
       vim.theme = {
         enable = true;
-        name = "gruber-darker";
+        name = "gruvbox";
+        style = "dark";
       };
 
       vim.lsp.trouble.enable = true;

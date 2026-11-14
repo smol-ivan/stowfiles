@@ -27,7 +27,7 @@
     ];
 
     shellAliases = {
-      drs = "darwin-rebuild switch --flake ~/bone/nixosfiles#MacBook-Air-de-Ivan";
+      drs = "sudo darwin-rebuild switch --flake ~/bone/nixosfiles#MacBook-Air-de-Ivan";
     };
 
     shellGlobalAliases = {

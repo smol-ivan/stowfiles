@@ -31,6 +31,11 @@ in
     };
   };
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true; # Permite caching rápido con Flakes
+  };
+
   # CLI Tools gestionadas puramente por Nix
   home.packages = with pkgs; [
     # Terminal & utilidades
@@ -38,13 +43,12 @@ in
     tmux-sessionizer
     lazygit
     ripgrep
-    fd
-    eza
-    direnv
-    fzf
+    # fd
+    # eza
+    # fzf
     tree
-    yt-dlp
-    ffmpeg
+    # yt-dlp
+    # ffmpeg
     mpv
   ];
 }

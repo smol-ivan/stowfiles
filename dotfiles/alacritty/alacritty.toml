@@ -7,4 +7,4 @@ dynamic_padding = true
 
 [font]
 normal = {family = "Maple Mono NF", style = "Regular" }
-size = 13
+size = 19
