@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 let
   dotfiles = "${config.home.homeDirectory}/bone/nixosfiles/dotfiles";
@@ -8,14 +13,17 @@ let
     hypr = "hypr";
     noctalia = "noctalia";
     kanata = "kanata";
+    MangoHud = "MangoHud";
   };
 in
 {
 
   imports = [
+    inputs.zen-browser.homeModules.beta
     ./nvimnvf.nix
     ./zsh.nix
     ./tmux.nix
+    ./vscodium.nix
   ];
 
   home.username = "chattini";
@@ -62,11 +70,26 @@ in
   programs.antigravity-cli.enable = true;
   programs.github-copilot-cli.enable = true;
 
+  programs.zen-browser = {
+    enable = true;
+    setAsDefaultBrowser = true;
+
+    profiles.default.presets.catppuccin = {
+      enable = true;
+      flavor = "Mocha";
+      accent = "Mauve";
+    };
+    profiles.default.presets.betterfox.enable = true;
+    # profiles.default.presets.arkenfox.enable = true;
+  };
+
   home.packages = with pkgs; [
     tmux-sessionizer
     lazygit
     pavucontrol
     zathura
+    ani-cli
+    btop
   ];
 
 }

@@ -19,6 +19,10 @@
   tap_symbols (tap-hold-press 140 180 spc (layer-while-held symbols))
 ;; tap_navnum  (tap-hold-press 140 180 menu (layer-while-held navnum))
 
+  ;; Tap = Ctrl derecho normal | Hold (600ms) = Cambia entre capa base y gaming
+  to_game     (tap-hold 200 600 rctl (layer-switch gaming))
+  to_base     (tap-hold 200 600 rctl (layer-switch base))
+
   ;; Ajustado para kb_layout=us + kb_variant=colemak_dh_wide (Hyprland/XKB)
   bang S-1  ;; !
   amp  S-8  ;; &
@@ -44,7 +48,17 @@
   tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
   @capsw  a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft       z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl    lmet lalt           @tap_symbols    ralt rmet _ rctl
+  lctl    lmet lalt           @tap_symbols    ralt rmet _ @to_game
+)
+
+;; Capa Gaming: Espacio normal sin retardo ni símbolos; rctl (hold 600ms) regresa a base
+(deflayer gaming
+  esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab     q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @capsw  a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft       z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl    lmet lalt           spc             ralt rmet _ @to_base
 )
 
 ;; Shared ANSI symbols layer shape for homerow-focused symbols

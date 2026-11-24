@@ -12,6 +12,7 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  boot.kernelModules = [ "k10temp" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 2;
@@ -60,6 +61,8 @@
 
   hardware.uinput.enable = true;
 
+  hardware.i2c.enable = true;
+
   services.kanata = {
     enable = true;
     keyboards = {
@@ -88,9 +91,9 @@
     };
   };
 
-  services.hypridle.enable = true;
-  programs.hyprlock.enable = true;
-  security.pam.services.hyprlock = { };
+  # services.hypridle.enable = true;
+  # programs.hyprlock.enable = true;
+  # security.pam.services.hyprlock = { };
 
   programs.hyprland = {
     enable = true;
@@ -107,6 +110,7 @@
       "input"
       "uinput"
       "docker"
+      "i2c"
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [
@@ -129,6 +133,9 @@
     git
     wl-clipboard
     fastfetch
+    mangohud
+    protonup-qt
+    ddcutil
   ];
 
   fonts.packages = with pkgs; [
@@ -149,9 +156,29 @@
       "nvidia-persitenced"
       "github-copilot-cli"
       "antigravity-cli"
+      "steam"
+      "steam-unwrapped"
+      "steam-original"
+      "steam-run"
     ];
 
-  hardware.graphics.enable = true;
+  programs.steam.enable = true;
+  # programs.steam.extraCompatPackages = with pkgs; [
+  #   proton-ge-bin
+  # ];
+
+  services.flatpak.enable = true;
+  services.flatpak.packages = [
+    # "deadlock-mod-manager-cef.flatpak"
+  ];
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  programs.gamemode.enable = true;
+
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = true;
   hardware.nvidia.modesetting.enable = true;

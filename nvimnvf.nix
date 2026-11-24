@@ -1,10 +1,16 @@
+{ pkgs, ... }:
 {
-
   programs.nvf = {
     enable = true;
 
     settings = {
       vim.keymaps = [
+        {
+          key = "<leader>,";
+          mode = "n";
+          silent = true;
+          action = ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>";
+        }
         {
           key = "<leader>e";
           mode = "n";
@@ -119,8 +125,55 @@
           silent = true;
           action = "<cmd>Trouble symbols toggle focus=false<cr>";
         }
+
+        # --- Quarto Keymaps ---
+        {
+          key = "<leader>qp";
+          mode = "n";
+          silent = true;
+          action = "<cmd>QuartoPreview<CR>";
+        }
+        {
+          key = "<leader>qc";
+          mode = "n";
+          silent = true;
+          action = "<cmd>QuartoClosePreview<CR>";
+        }
+        {
+          key = "<localleader>rc";
+          mode = "n";
+          silent = true;
+          action = ":lua require('quarto.runner').run_cell()<CR>";
+        }
+        {
+          key = "<localleader>ra";
+          mode = "n";
+          silent = true;
+          action = ":lua require('quarto.runner').run_above()<CR>";
+        }
+        {
+          key = "<localleader>rA";
+          mode = "n";
+          silent = true;
+          action = ":lua require('quarto.runner').run_all()<CR>";
+        }
+        {
+          key = "<localleader>rl";
+          mode = "n";
+          silent = true;
+          action = ":lua require('quarto.runner').run_line()<CR>";
+        }
+        {
+          key = "<localleader>r";
+          mode = "v";
+          silent = true;
+          action = ":lua require('quarto.runner').run_range()<CR>";
+        }
       ];
 
+      vim.options = {
+        scrolloff = 10;
+      };
       vim.viAlias = false;
       vim.vimAlias = true;
 
@@ -143,6 +196,8 @@
       vim.opts.shiftwidth = 4;
 
       vim.languages = {
+        sql.enable = true;
+        toml.enable = true;
         python.enable = true;
         rust.enable = true;
         clang.enable = true;
@@ -168,7 +223,9 @@
       vim.statusline.lualine.enable = true;
       vim.theme = {
         enable = true;
-        name = "gruber-darker";
+        # name = "gruber-darker";
+        name = "gruvbox";
+        style = "dark";
       };
 
       vim.lsp.trouble.enable = true;
@@ -222,6 +279,63 @@
         };
       };
       vim.visuals.nvim-web-devicons.enable = true;
+
+      vim.treesitter.enable = true;
+
+      # --- Plugins manuales (no soportados nativamente por nvf) ---
+      vim.extraPlugins = with pkgs.vimPlugins; {
+        # 1. otter.nvim: Dependencia de quarto para proveer soporte LSP embebido dentro de los code chunks
+        otter-nvim = {
+          package = otter-nvim;
+          setup = "require('otter').setup()";
+        };
+
+        # 2. Code Runner: vim-slime
+        # Permite enviar celdas/bloques de código a una terminal integrada de Neovim, tmux, etc.
+        # Otras alternativas comunes en Neovim son:
+        #   - 'molten-nvim' (estilo Jupyter Notebook interactivo con outputs y gráficos directos en Neovim)
+        #   - 'iron.nvim' (REPL interactivo integrado en splits de Neovim)
+        vim-slime = {
+          package = vim-slime;
+          setup = ''
+            -- Configura slime para enviar código a una terminal integrada de Neovim
+            vim.g.slime_target = "neovim"
+            vim.g.slime_no_mappings = 1
+          '';
+        };
+
+        # 3. quarto-nvim: Herramientas para documentos Quarto (.qmd)
+        quarto-nvim = {
+          package = quarto-nvim;
+          after = [
+            "otter-nvim"
+            "vim-slime"
+          ];
+          setup = ''
+            require('quarto').setup({
+              debug = false,
+              closePreviewOnExit = true,
+              lspFeatures = {
+                enabled = true,
+                chunks = "curly",
+                languages = { "r", "python", "julia", "bash", "html" },
+                diagnostics = {
+                  enabled = true,
+                  triggers = { "BufWritePost" },
+                },
+                completion = {
+                  enabled = true,
+                },
+              },
+              codeRunner = {
+                enabled = true,
+                default_method = "slime", -- opciones: "slime", "molten", "iron"
+                never_run = { "yaml" },
+              },
+            })
+          '';
+        };
+      };
     };
   };
 }
