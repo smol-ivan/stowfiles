@@ -11,4 +11,4 @@ alacritty
 kanata
 #godmacs
 
-hyprland
+#hyprland

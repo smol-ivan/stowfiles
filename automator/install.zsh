@@ -19,13 +19,13 @@ install_maple_font() {
     local fonts_dir="$HOME/.local/share/fonts/MapleFont"
     local temp_zip="/tmp/maple_font.zip"
 
-    if [[ -d "$fonts_dir" ]];then
+    if [[ -d "$fonts_dir" ]]; then
         print "Maple font esta instalado!"
         return 0
     fi
     print "Instalando Maple Font..."
 
-    # Obtener la URL (tu lógica actual es correcta)
+    # Obtener la URL
     url=$(curl -fsSL "https://api.github.com/repos/subframe7536/Maple-font/releases/latest" | \
         grep -oP '"browser_download_url":\s*"\K[^"]*MapleMono-NF[^"]*\.zip' | head -1)
 
@@ -37,7 +37,7 @@ install_maple_font() {
     # 1. Crear directorio
     mkdir -p "$fonts_dir"
 
-    # 2. Descargar a un archivo temporal en lugar de usar pipe
+    # 2. Descargar a un archivo temporal
     curl -fL "$url" -o "$temp_zip"
 
     # 3. Descomprimir el archivo temporal
@@ -45,13 +45,13 @@ install_maple_font() {
         print "Maple Font instalada exitosamente."
     else
         print "Error al descomprimir el archivo."
+        rm -f "$temp_zip"
         return 1
     fi
 
     # 4. Limpiar
     rm -f "$temp_zip"
 }
-
 
 install_setup() {
     install_nerd_fonts
@@ -64,21 +64,49 @@ install_setup() {
     fi
 }
 
+install_fonts() {
+    install_nerd_fonts
+    install_maple_font
+    command -v fc-cache >/dev/null && fc-cache -f "$HOME/.local/share/fonts"
+    print "¡Todas las fuentes han sido instaladas/actualizadas!"
+}
+
 main() {
     local mode="${1:-sync}"
     local manifest="${2:-$AUTOMATOR/MANIFEST_modules.txt}"
 
     case "$mode" in
-        -h|--help) show_usage; exit 0 ;;
+        -h|--help)
+            show_usage
+            exit 0
+            ;;
         bootstrap)
             install_packages "$AUTOMATOR/packages/base.txt"
             apply_stow "$manifest"
             install_setup
             ;;
-        setup) install_setup ;;
-        *)
-            [[ "$mode" != "sync" ]] && manifest="$mode"
+        setup)
+            install_setup
+            ;;
+        maple)
+            install_maple_font
+            command -v fc-cache >/dev/null && fc-cache -f "$HOME/.local/share/fonts"
+            ;;
+        fonts)
+            install_fonts
+            ;;
+        sync)
             apply_stow "$manifest"
+            ;;
+        *)
+            # Si pasas un archivo de manifiesto personalizado directamente
+            if [[ -f "$mode" ]]; then
+                apply_stow "$mode"
+            else
+                print "Error: Opción o manifiesto no válido -> $mode"
+                show_usage
+                exit 1
+            fi
             ;;
     esac
 }
@@ -86,11 +114,13 @@ main() {
 show_usage() {
     local script="${0##*/}"
     print "Uso:"
-    print "  $script                      # sync del manifiesto por defecto"
-    print "  $script bootstrap            # instalar paquetes + dotfiles + setup"
+    print "  $script                    # sync del manifiesto por defecto"
+    print "  $script bootstrap          # instalar paquetes + dotfiles + setup"
     print "  $script sync [manifest]      # sincronizar dotfiles"
-    print "  $script setup                # instalar fuentes + tmux"
-    print "  $script <manifest>           # atajo para sync"
+    print "  $script setup              # instalar fuentes + tmux"
+    print "  $script maple              # instalar solo maple font"
+    print "  $script fonts              # instalar todas las fuentes (nerd + maple)"
+    print "  $script <manifest>         # atajo para sync con manifiesto personalizado"
 }
 
 main "$@"
